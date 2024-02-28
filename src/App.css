@@ -1,0 +1,7 @@
+.herobg{
+    background-image: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.superprof.co%2Fblog%2Ffuncion-pruebas-icfes%2F&psig=AOvVaw2Jh5A4Ek_O2t7OINdv3wJC&ust=1708811316874000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCPD8_a24woQDFQAAAAAdAAAAABAd");
+    background-size: cover;
+    background-position: 50% 50%;
+    position: absolute;
+    display: none;
+}
