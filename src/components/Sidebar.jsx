@@ -50,13 +50,13 @@ const Sidebar = () => {
                       <Link to="Gastos">Gastos</Link>
                     </li>
                     <li>
-                      <a>Estudiantes</a>
+                      <Link to="Estudiantes">Estudiantes</Link>
                     </li>
                     <li>
-                      <a>Docentes</a>
+                      <Link to="Docentes">Docentes</Link>
                     </li>
                     <li>
-                      <a>Ingresos</a>
+                      <Link to="Ingresos">Ingresos</Link>
                     </li>
                   </ul>
                 </li>

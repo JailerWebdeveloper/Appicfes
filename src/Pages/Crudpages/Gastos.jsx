@@ -1,15 +1,18 @@
-import {AiFillSetting } from "react-icons/ai";
+import { AiFillSetting } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const Gastos = () => {
   return (
     <div className="w-full h-full ">
       <div className="w-full bg-base flex flex-col gap-2 items-center rounded-lg h-full p-2">
         {/*Join y boton */}
-        <div className=" w-full flex h-1/5 justify-between items-center px-10 rounded-lg">
-          <div className=" flex items-center justify-center gap-2">
-            <button className="btn btn-secondary btn-xl">Nueva entrada</button>
+        <div className=" w-full flex md:flex-row flex-col h-1/5 md:justify-between md:px-10  justify-center items-center gap-5 rounded-lg">
+          <div className=" flex items-center justify-center md:order-1 order-2 gap-2">
+            <Link to="/menu/NuevoPago" className="btn btn-secondary btn-xl">
+              Nueva entrada
+            </Link>
           </div>
-          <div className="join ">
+          <div className="join md:order-2  order-1">
             <div>
               <div>
                 <input
@@ -33,7 +36,7 @@ const Gastos = () => {
         </div>
         {/*Tabla */}
 
-        <div className="overflow-x-auto h-[600px] overflow-y-auto rounded-lg bg-base w-11/12 ">
+        <div className="overflow-x-auto h-[600px] overflow-y-auto bg-base w-11/12 ">
           <table className="table table-xs border h-80 overflow-y-auto w-full  ">
             <thead className="text-accent">
               <tr>
@@ -61,7 +64,9 @@ const Gastos = () => {
                 <td>Littel, Schaden and Vandervort</td>
                 <td>Canada</td>
                 <td>12/16/2020</td>
-                <td className=""><AiFillSetting className="btn-xs  btn btn-ghost w-auto h-2  mx-auto"/></td>
+                <td className="">
+                  <AiFillSetting className="btn-xs  btn btn-ghost w-auto h-2  mx-auto" />
+                </td>
               </tr>
               <tr>
                 <th>2</th>
