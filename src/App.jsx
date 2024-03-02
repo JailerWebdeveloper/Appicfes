@@ -11,12 +11,14 @@ import Docentes from "./Pages/Crudpages/Docentes";
 import IIngreso from "./Pages/Inputspages/Inputingreso";
 import IDocente from "./Pages/Inputspages/InputDocente";
 import IEstudiante from "./Pages/Inputspages/InputEstudiante";
+import Registerpage from "./Pages/Register";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/Registro" element={<Registerpage />} />
         <Route path="/Menu/*" element={<Dashboard />}>
           <Route path="Gastos" element={<Gastos />} />
           <Route path="Estudiantes" element={<Estudiantes />} />
