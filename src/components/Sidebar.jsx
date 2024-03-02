@@ -20,7 +20,7 @@ const Sidebar = () => {
             <label class="px-3 text-xs  uppercase ">Administracion</label>
 
             <Link
-              to="Menu"
+              to="/Menu"
               class="flex md:flex-row w-full p-2 transition-all flex-col items-center gap-4  md:rounded-lg hover:bg-accent"
               href="#"
             >
