@@ -12,6 +12,7 @@ import IIngreso from "./Pages/Inputspages/Inputingreso";
 import IDocente from "./Pages/Inputspages/InputDocente";
 import IEstudiante from "./Pages/Inputspages/InputEstudiante";
 import Registerpage from "./Pages/Register";
+import MenuDefault from "./Pages/MenuDefault";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/Registro" element={<Registerpage />} />
         <Route path="/Menu/*" element={<Dashboard />}>
+        <Route path="" element={<MenuDefault />} />
           <Route path="Gastos" element={<Gastos />} />
           <Route path="Estudiantes" element={<Estudiantes />} />
           <Route path="Ingresos" element={<Ingresos />} />
