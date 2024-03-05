@@ -15,6 +15,8 @@ const routerCursos=require("../router/routerCurso");
 const routerDocente=require("../router/routerDocente");
 const routerCartera=require("../router/routerCartera");
 const routerGasto=require("../router/routerGasto");
+const routerNotas= require("../router/routerNotas");
+const routerSimulacros= require("../router/routerSimulacro");
 /////
 app.use(morgan("dev"));
 app.get('/', (req, res) => {
@@ -33,6 +35,9 @@ app.use("/API/V2",routerCursos);
 app.use("/API/V2",routerDocente);
 app.use("/API/V2",routerCartera);
 app.use("/API/V2",routerGasto);
+app.use("/API/V2",routerNotas);
+app.use("/API/V2",routerSimulacros);
+
 
 
 

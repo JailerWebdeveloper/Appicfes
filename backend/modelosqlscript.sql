@@ -102,9 +102,9 @@ CREATE TABLE EstuCursos (
     FOREIGN KEY (Curso) REFERENCES Cursos(Id_curso)
 );
 
-
+drop table Notas;
 CREATE TABLE Notas (
-  id BIGINT NOT NULL PRIMARY KEY,
+  id BIGINT NOT NULL auto_increment PRIMARY   KEY,
   Id_Simulacro BIGINT NOT NULL,
   Id_Alumno BIGINT NOT NULL,
   Nota_LecturaCritica BIGINT,
@@ -124,3 +124,5 @@ select * from Cursos;
 select * from Docentes;
 select * from Carteras;
 select * from Gastos;
+select * from simulacros;
+select * from Notas;

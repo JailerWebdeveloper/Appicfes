@@ -4,8 +4,8 @@ const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../conexion");
 
 
-const Simulacro = sequelize.define|(
-  "Simulacro",
+const Simulacro = sequelize.define(
+  "simulacros",
   {
     Id: {
       type: DataTypes.BIGINT,
@@ -29,7 +29,7 @@ const Simulacro = sequelize.define|(
   },
   {
     sequelize,
-    modelName: "Simulacro",
+    modelName: "Simulacros",
     createdAt: false,
     updatedAt: false,
   }

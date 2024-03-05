@@ -15,7 +15,7 @@ router.post("/Registro/Simulacro",async (req,res)=>{
         });
         res.status(201).json({
             message: 'Nuevo Simulacreo creado exitosamente',
-            cartera: newSimulacro, // Cambiado 'curso' a 'cartera' para mayor claridad
+            Simulacro: newSimulacro, 
         });
     } catch (error) {
         console.error(error);
@@ -25,3 +25,23 @@ router.post("/Registro/Simulacro",async (req,res)=>{
         });
     }
 })
+
+
+router.get("/Simulacros/TodosSimulacros",async(req,res)=>{
+    try {
+        const Simulacro = await ModeloSimulacro.findAll();
+        console.log('Simulacros  encontrados:', Simulacro); // Agrega esta línea para imprimir las instituciones en la consola
+        res.status(200).json({
+            status: 200,
+            data: Simulacro,
+        });
+    } catch (error) {
+        console.error('Error al obtener los Simulacros:', error);
+        res.status(500).json({
+            status: 500,
+            message: 'Error interno del servidor',
+        });
+    }
+});
+
+module.exports = router;

@@ -7,12 +7,12 @@ const Estudiante = require("./modeloEstudiante");
 
 const Simulacro = require("./modeloSimulacro");
 
-const Notas = sequelize.model("Notas", {
+const Notas = sequelize.define("Notas", {
     id:{
         type:DataTypes.BIGINT,
         primaryKey: true,
         allowNull: false,
-        
+        autoIncrement: true,
     },
 
   Id_Simulacro: {
@@ -47,6 +47,8 @@ const Notas = sequelize.model("Notas", {
   Global: {
     type: DataTypes.BIGINT,
   },
+}, {
+    timestamps: false, // Desactivar la creación automática de createdAt y updatedAt
 });
 
 module.exports=Notas;
