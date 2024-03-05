@@ -20,7 +20,8 @@
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.9.1",
     "sequelize": "^6.37.0",
-    "sqlite3": "^5.1.7"
+    "sqlite3": "^5.1.7",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "sequelize-auto-migrations": "^1.0.3"
