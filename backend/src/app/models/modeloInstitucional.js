@@ -7,7 +7,7 @@ const Institucion = sequelize.define(
   "Instituciones",
   {
     Nit_institucion: {
-      type: DataTypes.BIGINT,
+      type: DataTypes.STRING,
       primaryKey: true,
       allowNull: false,
     },

@@ -22,7 +22,7 @@ CREATE TABLE Usuarios (
 
 
 CREATE TABLE simulacros (
-  Id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  Id VARCHAR(255) NOT NULL  PRIMARY KEY,
   Empresa VARCHAR(255) NOT NULL,
   CuadernillosComprados BIGINT NOT NULL,
   Fecha_Simulacro DATETIME NOT NULL,
@@ -102,10 +102,10 @@ CREATE TABLE EstuCursos (
     FOREIGN KEY (Curso) REFERENCES Cursos(Id_curso)
 );
 
-drop table Notas;
+
 CREATE TABLE Notas (
   id BIGINT NOT NULL auto_increment PRIMARY   KEY,
-  Id_Simulacro BIGINT NOT NULL,
+  Id_Simulacro varchar(255) NOT NULL,
   Id_Alumno BIGINT NOT NULL,
   Nota_LecturaCritica BIGINT,
   Nota_Matematicas BIGINT,

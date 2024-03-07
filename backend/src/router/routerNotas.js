@@ -65,4 +65,21 @@ router.post("/Notas/cargar-excel", upload.single("archivo"), async (req, res) =>
         }
   });
 
+router.get("/Notas/Todas",async (req,res)=>{
+  try{
+    const NewNotas =await Notas.findAll() ;
+    console.log('Cursos  encontrados:', NewNotas); 
+        res.status(200).json({
+            status: 200,
+            data: NewNotas,
+        });
+    } catch (error) {
+        console.error('Error al obtener las Notas:', error);
+        res.status(500).json({
+            status: 500,
+            message: 'Error interno del servidor',
+        });
+  }
+})
+
 module.exports = router;

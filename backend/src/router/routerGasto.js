@@ -27,4 +27,22 @@ router.post("/Registro/Gasto",async (req,res)=>{
     
     }
 });
+
+router.get("/Gastos/Todos",async (req,res)=>{
+    try{
+        const NewGasto= await ModeloGasto.findAll();
+        console.log('Gastos  encontrados:', NewGasto); // Agrega esta línea para imprimir las instituciones en la consola
+        res.status(200).json({
+            status: 200,
+            data: NewGasto,
+        });
+    } catch (error) {
+        console.error('Error al obtener los Gastos:', error);
+        res.status(500).json({
+            status: 500,
+            message: 'Error interno del servidor',
+        });
+    }
+})
+
 module.exports = router;

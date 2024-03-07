@@ -14,7 +14,7 @@ router.post("/Registro/Simulacro",async (req,res)=>{
             Grado
         });
         res.status(201).json({
-            message: 'Nuevo Simulacreo creado exitosamente',
+            message: 'Nuevo Simulacro creado exitosamente',
             Simulacro: newSimulacro, 
         });
     } catch (error) {
