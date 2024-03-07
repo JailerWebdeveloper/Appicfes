@@ -25,4 +25,21 @@ router.post("/Registro/Cartera", async (req, res) => {
     }
 });
 
+router.get("/Pagos/Todos",async (req,res)=>{
+    try{
+        const Newpago = await ModeloCartera.findAll();
+        console.log('Pagos  encontrados:', Newpago); // Agrega esta línea para imprimir las instituciones en la consola
+        res.status(200).json({
+            status: 200,
+            data: Newpago,
+        });
+    } catch (error) {
+        console.error('Error al obtener los Pagos:', error);
+        res.status(500).json({
+            status: 500,
+            message: 'Error interno del servidor',
+        });
+    }
+    
+});
 module.exports = router;
