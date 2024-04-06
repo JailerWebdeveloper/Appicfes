@@ -4,11 +4,18 @@ import { Link } from "react-router-dom";
 const Estudiantes = () => {
   return (
     <div className="w-full h-full ">
+      <h1 className="text-2xl font-bold uppercase text-center border-b-2">
+        Administracion Estudiantes
+      </h1>
+
       <div className="w-full bg-base flex flex-col gap-2 items-center rounded-lg h-full p-2">
         {/*Join y boton */}
         <div className=" w-full flex md:flex-row flex-col h-1/5 md:justify-between md:px-10  justify-center items-center gap-5 rounded-lg">
           <div className=" flex items-center justify-center md:order-1 order-2 gap-2">
-            <Link to="/menu/NuevoEstudiante" className="btn btn-secondary btn-xl">
+            <Link
+              to="/menu/NuevoEstudiante"
+              className="btn btn-secondary btn-xl"
+            >
               Nueva entrada
             </Link>
           </div>
@@ -40,7 +47,7 @@ const Estudiantes = () => {
           <table className="table table-xs border h-80 overflow-y-auto w-full  ">
             <thead className="text-accent">
               <tr>
-              <th></th>
+                <th></th>
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Telefono</th>
@@ -56,31 +63,23 @@ const Estudiantes = () => {
             <tbody>
               <tr>
                 <th>1</th>
-                <td>Cy Ganderton</td>
-                <td>
-                  Quality Control
-                  sssssssssssssssssssssssssssssssssssssssssssssssssssssss Lorem
-                  ipsum dolor sit amet consectetur adipisicing elit. Suscipit
-                  ullam quas in facilis, officiis beatae fuga quia nostrum
-                  numquam atque, alias animi quis nulla ut libero quibusdam
-                  itaque quidem consequatur?
-                </td>
-                <td>Littel, Schaden and Vandervort</td>
-                <td>Canada</td>
-                <td>12/16/2020</td>
-                <td>12/16/2020</td>
-                <td>12/6/2020</td>
-                <td>12/16/2020</td>
-                <td>12/16/2020</td>
+                <td>Orlando seoanes</td>
+                <td>oviedo</td>
+                <td>33223321232</td>
+                <td>Cll 13 b #3-24</td>
+                <td>Valledupar</td>
+                <td>Loperena</td>
+                <td>Patiño</td>
+                <td>33212343123</td>
+                <td>Deudor</td>
                 <td className="">
                   <AiFillSetting className="btn-xs  btn btn-ghost w-auto h-2  mx-auto" />
                 </td>
               </tr>
-
             </tbody>
             <tfoot className="text-accent">
-            <tr>
-              <th></th>
+              <tr>
+                <th></th>
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Telefono</th>

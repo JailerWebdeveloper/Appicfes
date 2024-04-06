@@ -46,6 +46,9 @@ const Sidebar = () => {
               <ul className="menu">
                 <li>
                   <ul>
+                  <li>
+                      <Link to="Instituciones">Instituciones</Link>
+                    </li>
                     <li>
                       <Link to="Gastos">Gastos</Link>
                     </li>

@@ -1,4 +1,39 @@
+import { useEffect, useState } from "react";
+import React from "react";
+import axios from "axios";
+
 const IIngreso = () => {
+  const [formdata, setFormdata] = useState({
+    file: null,
+    fechaExpedicion: "",
+    metodoPago: "",
+    valorPago: ""
+  });
+
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    setFormdata(prevState => ({
+      ...prevState,
+      [name]: files ? files[0] : value
+    }));
+  };
+
+  const handleConfirm = async () => {
+
+    if ( formdata) {
+      try {
+        const response = await axios.post(
+          "http://localhost:3002/ingresar",
+          formdata
+        );
+
+      } catch (error) {
+        console.error("Error al realizar la solicitud POST:", error);
+      }
+    }
+  };
+
+  
   return (
     <>
       <div className="w-full h-full ">
@@ -7,24 +42,28 @@ const IIngreso = () => {
             crear nuevo Ingreso
           </h1>
 
-          <label class="form-control w-full max-w-xs">
-            <div class="label">
-              <span class="label-text text-sm">Crear mediante archivo</span>
-              <span class="label-alt text-sm">Solo documentos de Excel </span>
+          <label className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text text-sm">Crear mediante archivo</span>
+              <span className="label-alt text-sm">Solo documentos de Excel </span>
             </div>
             <input
               type="file"
               className="file-input file-input-bordered file-input-primary w-full max-w-xs"
+              name="file"
+              onChange={handleChange}
             />
           </label>
 
-          <label class="form-control w-full max-w-xs">
-            <div class="label">
-              <span class="label-text">Fecha de expedicion del Ingreso</span>
+          <label className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text">Fecha de expedicion del Ingreso</span>
             </div>
             <input
               type="date"
               className="p-2 focus:border-primary md:mt-3 bg-base text-base rounded-xl"
+              name="fechaExpedicion"
+              onChange={handleChange}
             />
           </label>
 
@@ -32,9 +71,13 @@ const IIngreso = () => {
             <div className="label">
               <span className="label-text">Selecciona el Metodo de pago</span>
             </div>
-            <select class="select select-primary w-full max-w-xs">
+            <select
+              className="select select-primary w-full max-w-xs"
+              name="metodoPago"
+              onChange={handleChange}
+            >
               <option disabled selected>
-                What is the best TV show?
+                Seleccione el método de pago
               </option>
               <option>Game of Thrones</option>
               <option>Lost</option>
@@ -51,15 +94,16 @@ const IIngreso = () => {
               type="number"
               placeholder="Gasto"
               className="input input-primary input-bordered w-full max-w-xs"
+              name="valorPago"
+              onChange={handleChange}
             />
           </label>
 
-
           <div className=" mt-10 flex items-center justify-center gap-2">
-            <button type="submit" className="btn btn-primary btn-outline ">
+            <button type="button" onClick={handleConfirm} className="btn btn-primary btn-outline ">
               Confirmar
             </button>
-            <button type="submit" className="btn btn-error btn-outline ">
+            <button  className="btn btn-error btn-outline ">
               Cancelar
             </button>
           </div>

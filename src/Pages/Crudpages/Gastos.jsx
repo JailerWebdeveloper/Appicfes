@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 const Gastos = () => {
   return (
     <div className="w-full h-full ">
+      <h1 className="text-2xl font-bold uppercase text-center border-b-2">
+        Gastos
+      </h1>
+
       <div className="w-full bg-base flex flex-col gap-2 items-center rounded-lg h-full p-2">
         {/*Join y boton */}
         <div className=" w-full flex md:flex-row flex-col h-1/5 md:justify-between md:px-10  justify-center items-center gap-5 rounded-lg">
@@ -36,7 +40,7 @@ const Gastos = () => {
         </div>
         {/*Tabla */}
 
-        <div className="overflow-x-auto h-[600px] overflow-y-auto bg-base w-11/12 ">
+        <div className="overflow-x-auto h-[450px] overflow-y-auto bg-base w-11/12 ">
           <table className="table table-xs border h-80 overflow-y-auto w-full  ">
             <thead className="text-accent">
               <tr>

@@ -13,6 +13,8 @@ import IDocente from "./Pages/Inputspages/InputDocente";
 import IEstudiante from "./Pages/Inputspages/InputEstudiante";
 import Registerpage from "./Pages/Register";
 import MenuDefault from "./Pages/MenuDefault";
+import Instituciones from "./Pages/Crudpages/Instituciones";
+import IInstitucion from "./Pages/Inputspages/InputInstitucion";
 
 function App() {
   return (
@@ -23,11 +25,13 @@ function App() {
         <Route path="/Menu/*" element={<Dashboard />}>
         <Route path="" element={<MenuDefault />} />
           <Route path="Gastos" element={<Gastos />} />
+          <Route path="Instituciones" element={<Instituciones />} />
           <Route path="Estudiantes" element={<Estudiantes />} />
           <Route path="Ingresos" element={<Ingresos />} />
           <Route path="Docentes" element={<Docentes />} />
           <Route path="NuevoGasto" element={<IGastos />} />
           <Route path="NuevoPago" element={<IIngreso />} />
+          <Route path="NuevaInstitucion" element={<IInstitucion />} />
           <Route path="NuevoDocente" element={<IDocente/>} />
           <Route path="NuevoEstudiante" element={<IEstudiante/>} />
           <Route path="Metricas" element={<Metricas />} />

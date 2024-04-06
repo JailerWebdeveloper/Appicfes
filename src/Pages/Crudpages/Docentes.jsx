@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 const Docentes = () => {
   return (
     <div className="w-full h-full ">
+      <h1 className="text-2xl font-bold uppercase text-center border-b-2">
+        Administracion Docentes
+      </h1>
+
       <div className="w-full bg-base flex flex-col gap-2 items-center rounded-lg h-full p-2">
         {/*Join y boton */}
         <div className=" w-full flex md:flex-row flex-col h-1/5 md:justify-between md:px-10  justify-center items-center gap-5 rounded-lg">
@@ -81,10 +85,9 @@ const Docentes = () => {
                 <td>Colegio</td>
                 <td>Purple</td>
               </tr>
-
             </tbody>
             <tfoot className="text-accent">
-            <tr>
+              <tr>
                 <th></th>
                 <th>Nombre</th>
                 <th>Apellido</th>

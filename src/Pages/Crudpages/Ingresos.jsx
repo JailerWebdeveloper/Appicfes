@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 const Ingresos = () => {
   return (
     <div className="w-full h-full md:px-4 ">
+      <h1 className="text-2xl font-bold uppercase text-center border-b-2">Ingresos</h1>
       <div className="w-full bg-base flex flex-col gap-2 items-center rounded-lg h-full p-2">
         {/*Join y boton */}
         <div className=" w-full flex md:flex-row flex-col h-1/5 md:justify-between md:px-10  justify-center items-center gap-5 rounded-lg">
