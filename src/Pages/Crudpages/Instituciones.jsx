@@ -12,7 +12,7 @@ const Instituciones = () => {
     const fetchInstituciones = async () => {
       try {
         const response = await axios.get(
-          "http://srv435312.hstgr.cloud:3002/API/V2/Instituciones"
+          "http://srv435312.hstgr.cloud:4200/API/V2/Instituciones"
         );
         setInstituciones(response.data.data);
         setLoading(false);

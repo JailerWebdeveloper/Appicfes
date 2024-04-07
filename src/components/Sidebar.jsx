@@ -1,19 +1,24 @@
 import { Fragment } from "react";
 import { AiTwotoneHome, AiFillSetting } from "react-icons/ai";
 import { FaChartBar } from "react-icons/fa";
+import { IoIosLogOut } from "react-icons/io";
+import Cookies from "js-cookie";
+
 import { Link } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = ({ usuario }) => {
   return (
     <Fragment>
       <aside class="md:flex hidden flex-col md:w-64 w-32 h-screen md:px-5 px-2 bg-base rounded-tr-2xl py-8 overflow-y-auto  border-r rtl:border-r-0 rtl:border-l">
-        <a href="#" className="btn btn-ghost rounded-full">
           <img
-            class="w-auto mx-auto h-7"
-            src="https://merakiui.com/images/logo.svg"
+            class="w-auto mx-auto h-10"
+            src="/unnamed.png"
             alt=""
           />
-        </a>
+
+        <p className="text-center capitalize break-all font-bold text-gray-500 mt-5">
+          {usuario.nombre + "   " + usuario.apellido}
+        </p>
 
         <nav class="flex flex-col justify-start md:items-start items-center flex-wrap w-full gap-3 flex-1 mt-6">
           <div class="my-3 flex flex-col gap-3 md:items-start items-center justify-start w-full">
@@ -46,7 +51,7 @@ const Sidebar = () => {
               <ul className="menu">
                 <li>
                   <ul>
-                  <li>
+                    <li>
                       <Link to="Instituciones">Instituciones</Link>
                     </li>
                     <li>
@@ -68,13 +73,15 @@ const Sidebar = () => {
           </div>
 
           <div className="divider divider-primary w-2/5 mx-auto"></div>
+
           <a
             class="flex md:flex-row w-full p-2 transition-all flex-col items-center gap-4  md:rounded-lg hover:bg-accent"
-            href="#"
+            href="/"
+            onClick={() => Cookies.remove("accessToken")}
           >
-            <AiFillSetting className="w-auto h-6 " />
+            <IoIosLogOut className="w-auto h-6  text-error" />
 
-            <p class="text-sm font-medium break-all">Configuracion</p>
+            <p class="text-sm font-medium break-all">Desconectar</p>
           </a>
         </nav>
       </aside>

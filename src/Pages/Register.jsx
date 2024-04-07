@@ -1,16 +1,33 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
 const Registerpage = () => {
   const [formData, setFormData] = useState({
-    Nombre: "",
-    Apellido: "",
-    Usuario: "",
-    Contraseña: "",
-    Cedula: "",
-    Empresa: ""
+    nombre: "",
+    apellido: "",
+    usuario: "",
+    contraseña: "",
+    cedula: "",
+    Institucion: 0,
   });
+  const [instituciones, setInstituciones] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchInstituciones = async () => {
+      try {
+        const response = await axios.get(
+          "http://srv435312.hstgr.cloud:4200/API/V2/Instituciones"
+        );
+        setInstituciones(response.data.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error al recuperar los datos:", error);
+      }
+    };
+    fetchInstituciones();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,10 +37,21 @@ const Registerpage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("URL_DEL_API", formData);
-      console.log(response.data); // Aquí puedes manejar la respuesta según necesites
+      const formdata = {
+        nombre: formData.nombre,  
+        apellido: formData.apellido,
+        usuario: formData.usuario,
+        contrasena: formData.contraseña,
+        cedula: parseInt(formData.cedula), // Convertir a entero
+        Institucion: parseInt(formData.Institucion), // Convertir a entero
+      };
+      console.log(formdata);
+      const response = await axios.post("http://srv435312.hstgr.cloud:4200/API/V2/Usuario/Registro", formdata);
+      alert(response.message);
+      window.location.href = "/";
     } catch (error) {
       console.error("Error al enviar la solicitud POST:", error);
+      alert(error.response.data.message)
     }
   };
 
@@ -46,60 +74,63 @@ const Registerpage = () => {
             <form className="text-primary flex flex-col gap-5 w-4/5 mx-auto" onSubmit={handleSubmit}>
               <div className="flex gap-5 items-center w-full justify-center">
                 <input
-                  name="Nombre"
+                  name="nombre"
                   type="text"
                   className="w-1/2 max-w-md py-2 px-4 rounded-lg text-primary outline-none"
                   placeholder="Nombre"
-                  value={formData.Nombre}
+                  value={formData.nombre}
                   onChange={handleChange}
                 />
                 <input
-                  name="Apellido"
+                  name="apellido"
                   type="text"
                   className="w-1/2 max-w-md py-2 px-4 rounded-lg text-primary outline-none"
                   placeholder="Apellido"
-                  value={formData.Apellido}
+                  value={formData.apellido}
                   onChange={handleChange}
                 />
               </div>
               <div className="flex gap-5 items-center w-full justify-center">
                 <input
-                  name="Usuario"
+                  name="usuario"
                   type="text"
                   className="w-1/2 max-w-md py-2 px-4 rounded-lg text-primary outline-none"
                   placeholder="Usuario"
-                  value={formData.Usuario}
+                  value={formData.usuario}
                   onChange={handleChange}
                 />
                 <input
-                  name="Contraseña"
+                  name="contraseña"
                   type="password"
                   className="w-1/2 max-w-md py-2 px-4 rounded-lg text-primary outline-none"
                   placeholder="Contraseña"
-                  value={formData.Contraseña}
+                  value={formData.contraseña}
                   onChange={handleChange}
                 />
               </div>
               <div className="flex gap-5 items-center w-full justify-center">
                 <input
-                  name="Cedula"
+                  name="cedula"
                   type="text"
                   className="w-1/2 max-w-md py-2 px-4 rounded-lg text-primary outline-none"
                   placeholder="Cedula"
-                  value={formData.Cedula}
+                  value={formData.cedula}
                   onChange={handleChange}
                 />
                 <select
-                  name="Empresa"
+                  name="Institucion"
                   className="select select-bordered bg-gray-800 text-gray-400 w-1/2 max-w-xs"
-                  value={formData.Empresa}
+                  value={formData.Institucion}
                   onChange={handleChange}
                 >
-                  <option disabled selected>
-                    Selecciona Empresa perteneciente
-                  </option>
-                  <option>Han Solo</option>
-                  <option>Greedo</option>
+                  <option value="0">Selecciona Empresa perteneciente</option>
+                  {loading ? (
+                    <option>Cargando...</option>
+                  ) : (
+                    instituciones.map((institucion, index) => (
+                      <option key={index} value={institucion.Nit_institucion}>{institucion.Nombre_Institucion}</option>
+                    ))
+                  )}
                 </select>
               </div>
               <div className="w-full max-w-md mx-auto">

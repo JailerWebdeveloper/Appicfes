@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import axios from "axios"; 
 import { Link } from "react-router-dom";
 const IInstitucion = () => {
   const [formdata, setFormdata] = useState({
@@ -20,7 +20,7 @@ const IInstitucion = () => {
     if (  formdata.Nombre_Institucion && formdata.Nit_institucion) {
       try {
         const response = await axios.post(
-          "http://srv435312.hstgr.cloud:4250/API/V2/Instituciones",
+          "http://srv435312.hstgr.cloud:4200/API/V2/Instituciones",
           formdata
         );
         console.log(response)
@@ -32,6 +32,8 @@ const IInstitucion = () => {
         alert("Al parecer hubo un error",error)
         setmessage(error.response.data.message);
       }
+    }else{
+      alert("debes ingresar todos los datos")
     }
   };
 

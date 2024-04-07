@@ -1,7 +1,35 @@
 import { AiFillSetting } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import React from "react";
+import { useEffect,useState } from "react";
 
 const Docentes = () => {
+  const [Docentes, setDocentes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        const response = await axios.get(
+          "http://srv435312.hstgr.cloud:4200/API/V2/Docentes/Todos"
+        );
+        setDocentes(response.data.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error al recuperar los datos:", error);
+      }
+    };
+    fetch();
+  }, []);
+
+  const Filtered = Docentes.filter((filtrado) =>
+  filtrado.Nombre.toLowerCase().includes(searchTerm.toLowerCase())||
+  filtrado.Nit_institucion.toString().includes(searchTerm)
+);
+
+
   return (
     <div className="w-full h-full ">
       <h1 className="text-2xl font-bold uppercase text-center border-b-2">
@@ -19,20 +47,15 @@ const Docentes = () => {
           <div className="join md:order-2  order-1">
             <div>
               <div>
-                <input
+              <input
                   className="input input-bordered join-item"
-                  placeholder="Search"
+                  placeholder="Buscar"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
             </div>
-            <select className="select select-bordered join-item">
-              <option disabled selected>
-                Filter
-              </option>
-              <option>Sci-fi</option>
-              <option>Drama</option>
-              <option>Action</option>
-            </select>
+           
             <div className="indicator">
               <button className="btn join-item">Search</button>
             </div>
@@ -41,7 +64,7 @@ const Docentes = () => {
         {/*Tabla */}
 
         <div className="overflow-x-auto h-[600px] overflow-y-auto bg-base w-11/12 ">
-          <table className="table table-xs border h-80 overflow-y-auto w-full  ">
+          <table className="table table-xs border overflow-y-auto w-full  ">
             <thead className="text-accent">
               <tr>
                 <th></th>
@@ -55,36 +78,26 @@ const Docentes = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th>1</th>
-                <td>Cy Ganderton</td>
-                <td>
-                  Quality Control
-                  sssssssssssssssssssssssssssssssssssssssssssssssssssssss Lorem
-                  ipsum dolor sit amet consectetur adipisicing elit. Suscipit
-                  ullam quas in facilis, officiis beatae fuga quia nostrum
-                  numquam atque, alias animi quis nulla ut libero quibusdam
-                  itaque quidem consequatur?
-                </td>
-                <td>Littel, Schaden and Vandervort</td>
-                <td>Canada</td>
-                <td>Colegio</td>
-
-                <td>12/16/2020</td>
-                <td className="">
-                  <AiFillSetting className="btn-xs  btn btn-ghost w-auto h-2  mx-auto" />
-                </td>
-              </tr>
-              <tr>
-                <th>2</th>
-                <td>Hart Hagerty</td>
-                <td>Desktop Support Technician</td>
-                <td>Zemlak, Daniel and Leannon</td>
-                <td>United States</td>
-                <td>12/5/2020</td>
-                <td>Colegio</td>
-                <td>Purple</td>
-              </tr>
+            {loading ? (
+                  <tr>
+                    <td colSpan="4">Cargando...</td>
+                  </tr>
+                ) : (
+                  Filtered.map((Docente, index) => (
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td className="text-black">{Docente.Nombre}</td>
+                      <td>{Docente.Apellido}</td>
+                      <td>{Docente.Telefono}</td>
+                      <td>{Docente.Materia_Dicta}</td>
+                      <td>{Docente.Cobro}</td>
+                      <td>{Docente.Nit_institucion}</td>
+                      <td>
+                        <AiFillSetting className="btn-xs btn btn-ghost w-auto h-2 mx-auto" />
+                      </td>
+                    </tr>
+                  ))
+                )}
             </tbody>
             <tfoot className="text-accent">
               <tr>
