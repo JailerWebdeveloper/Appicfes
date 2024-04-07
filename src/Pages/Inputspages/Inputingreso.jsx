@@ -23,7 +23,7 @@ const IIngreso = () => {
     if ( formdata) {
       try {
         const response = await axios.post(
-          "http://localhost:3002/ingresar",
+          "http://srv435312.hstgr.cloud:4250/API/V2/ingresar",
           formdata
         );
 

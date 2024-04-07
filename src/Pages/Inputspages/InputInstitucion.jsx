@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-
+import { Link } from "react-router-dom";
 const IInstitucion = () => {
   const [formdata, setFormdata] = useState({
     Nombre_Institucion: "",
@@ -20,7 +20,7 @@ const IInstitucion = () => {
     if (  formdata.Nombre_Institucion && formdata.Nit_institucion) {
       try {
         const response = await axios.post(
-          "http://srv435312.hstgr.cloud:3002/API/V2/InstitucioneS",
+          "http://srv435312.hstgr.cloud:4250/API/V2/Instituciones",
           formdata
         );
         console.log(response)
@@ -77,9 +77,9 @@ const IInstitucion = () => {
             <button type="button" onClick={handleConfirm} className="btn btn-primary btn-outline">
               Confirmar
             </button>
-            <button type="button" className="btn btn-error btn-outline">
+            <Link to="/menu/Instituciones" type="button" className="btn btn-error btn-outline">
               Cancelar
-            </button>
+            </Link>
           </div>
         </div>
     </>
