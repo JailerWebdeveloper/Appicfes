@@ -1,7 +1,34 @@
 import { AiFillSetting } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import React from "react";
+import { useEffect,useState } from "react";
 
 const Estudiantes = () => {
+  const [Estudiantes, setEstudiantes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        const response = await axios.get(
+          "http://srv435312.hstgr.cloud:4200/API/V2/Estudiantes/Todos"
+        );
+        setEstudiantes(response.data.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error al recuperar los datos:", error);
+      }
+    };
+    fetch();
+  }, []);
+
+
+  const Filtered = Estudiantes.filter((filtrado) =>
+  filtrado.Nombre.toLowerCase().includes(searchTerm.toLowerCase())||
+  filtrado.Nit_institucion.toString().includes(searchTerm)
+);
+
   return (
     <div className="w-full h-full ">
       <h1 className="text-2xl font-bold uppercase text-center border-b-2">
@@ -22,20 +49,15 @@ const Estudiantes = () => {
           <div className="join md:order-2  order-1">
             <div>
               <div>
-                <input
+              <input
                   className="input input-bordered join-item"
-                  placeholder="Search"
+                  placeholder="Buscar"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
             </div>
-            <select className="select select-bordered join-item">
-              <option disabled selected>
-                Filter
-              </option>
-              <option>Sci-fi</option>
-              <option>Drama</option>
-              <option>Action</option>
-            </select>
+   
             <div className="indicator">
               <button className="btn join-item">Search</button>
             </div>
@@ -57,25 +79,37 @@ const Estudiantes = () => {
                 <th>NombreAcu</th>
                 <th>TelefonoAcu</th>
                 <th>Estado</th>
+                <th>Nit_institucion</th>
+                <th>Grado</th>
                 <th>Opciones</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th>1</th>
-                <td>Orlando seoanes</td>
-                <td>oviedo</td>
-                <td>33223321232</td>
-                <td>Cll 13 b #3-24</td>
-                <td>Valledupar</td>
-                <td>Loperena</td>
-                <td>Patiño</td>
-                <td>33212343123</td>
-                <td>Deudor</td>
-                <td className="">
-                  <AiFillSetting className="btn-xs  btn btn-ghost w-auto h-2  mx-auto" />
-                </td>
-              </tr>
+            {loading ? (
+                  <tr>
+                    <td colSpan="4">Cargando...</td>
+                  </tr>
+                ) : (
+                  Filtered.map((Estudiante, index) => (
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td className="text-black">{Estudiante.Nombre}</td>
+                      <td>{Estudiante.Apellido}</td>
+                      <td>{Estudiante.Telefono}</td>
+                      <td>{Estudiante.Direccion}</td>
+                      <td>{Estudiante.Municipio}</td>
+                      <td>{Estudiante.Colegio}</td>
+                      <td>{Estudiante.NombreApeAcu}</td>
+                      <td>{Estudiante.TelefonoAcu}</td>
+                      <td>{Estudiante.Estado}</td>
+                      <td>{Estudiante.Nit_institucion}</td>
+                      <td>{Estudiante.Grado}</td>
+                      <td>
+                        <AiFillSetting className="btn-xs btn btn-ghost w-auto h-2 mx-auto" />
+                      </td>
+                    </tr>
+                  ))
+                )}
             </tbody>
             <tfoot className="text-accent">
               <tr>
@@ -89,6 +123,7 @@ const Estudiantes = () => {
                 <th>NombreAcu</th>
                 <th>TelefonoAcu</th>
                 <th>Estado</th>
+                <th>Grado</th>
                 <th>Opciones</th>
               </tr>
             </tfoot>
