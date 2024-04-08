@@ -61,7 +61,7 @@ const IDocente = () => {
         alert(response.data.message);
       } catch (error) {
         console.error("Error al realizar la solicitud POST:", error);
-        alert("Al parecer hubo un error", error);
+        alert(error.response.data.message);
         setmessage(error.response.data.message);
       }
     } else {
@@ -100,7 +100,7 @@ const IDocente = () => {
           </label>
           <label className="form-control w-full max-w-xs">
             <div className="label">
-              <span className="label-text">Selecciona Materia_Dicta</span>
+              <span className="label-text">Selecciona Emrpresa</span>
             </div>
             <select
               name="Nit_institucion"

@@ -2,9 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-
-
-
 const IEstudiante = () => {
   const [formdata, setFormdata] = useState({
     Tipo_documento: "",
@@ -19,8 +16,7 @@ const IEstudiante = () => {
     TelefonoAcu: "",
     Estado: "",
     Nit_institucion: 0,
-    Grado:""
-
+    Grado: "",
   });
 
   const [instituciones, setInstituciones] = useState([]);
@@ -34,9 +30,7 @@ const IEstudiante = () => {
     }));
   };
 
-
   useEffect(() => {
-
     const fetchInstituciones = async () => {
       try {
         const response = await axios.get(
@@ -51,7 +45,6 @@ const IEstudiante = () => {
     fetchInstituciones();
   }, []);
 
-
   const handleConfirm = async () => {
     if (formdata.Documento && formdata.Nit_institucion) {
       try {
@@ -59,30 +52,25 @@ const IEstudiante = () => {
           Tipo_documento: formdata.Tipo_documento,
           Documento: parseInt(formdata.Documento),
           Nombre: formdata.Nombre,
-          Apellido:formdata.Apellido,
+          Apellido: formdata.Apellido,
           Telefono: formdata.Telefono,
           Direccion: formdata.Direccion,
-          Colegio:formdata.Colegio,
-          Municipio:formdata.Municipio,
-          NombreApeAcu:formdata.NombreApeAcu,
-          TelefonoAcu:formdata.TelefonoAcu,
-          Estado:formdata.Estado,
+          Colegio: formdata.Colegio,
+          Municipio: formdata.Municipio,
+          NombreApeAcu: formdata.NombreApeAcu,
+          TelefonoAcu: formdata.TelefonoAcu,
+          Estado: formdata.Estado,
           Nit_institucion: parseInt(formdata.Nit_institucion),
-          Grado:formdata.Grado,
-
+          Grado: formdata.Grado,
         };
-        console.log(data)
         const response = await axios.post(
           "http://srv435312.hstgr.cloud:4200/API/V2/Registro/Estudiante",
           data
         );
-        console.log(response);
-        console.log(response.data);
         alert(response.data.message);
       } catch (error) {
         console.error("Error al realizar la solicitud POST:", error);
-        alert("Al parecer hubo un error", error);
-        setmessage(error.response.data.message);
+        alert(error.response.data.message);
       }
     } else {
       alert("debes ingresar todos los datos");
@@ -95,12 +83,43 @@ const IEstudiante = () => {
           <h1 className="text-primary uppercase antialised text-5xl md:col-span-3 my-10 mx-auto text-center font-bold">
             crear nuevo Estudiante
           </h1>
-
+          <label className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text">Selecciona Tipo de documento</span>
+            </div>
+            <select
+              onChange={handleChange}
+              name="Tipo_documento"
+              class="select select-primary w-full max-w-xs"
+            >
+              <option disabled selected>
+                Tipo de documento
+              </option>
+              <option value="Cédula">C.C</option>
+              <option value="Tarjeta de identidad">T.I</option>
+            </select>
+          </label>
+          <label className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text">Ingresar el Documento</span>
+            </div>
+            <input
+              onChange={handleChange}
+              type="number"
+              name="Documento"
+              placeholder="Telefono"
+              className="input input-primary input-bordered w-full max-w-xs"
+            />
+          </label>
           <label className="form-control w-full max-w-xs">
             <div className="label">
               <span className="label-text">Selecciona Municipio</span>
             </div>
-            <select onChange={handleChange} name="Municipio" class="select select-primary w-full max-w-xs">
+            <select
+              onChange={handleChange}
+              name="Municipio"
+              class="select select-primary w-full max-w-xs"
+            >
               <option disabled selected>
                 Selecciona el Municipio
               </option>
@@ -135,7 +154,11 @@ const IEstudiante = () => {
             <div className="label">
               <span className="label-text">Selecciona Grado</span>
             </div>
-            <select  name="Grado" class="select select-primary w-full max-w-xs">
+            <select
+              onChange={handleChange}
+              name="Grado"
+              class="select select-primary w-full max-w-xs"
+            >
               <option disabled selected>
                 Grado del estudiante
               </option>
@@ -148,7 +171,11 @@ const IEstudiante = () => {
             <div className="label">
               <span className="label-text">Selecciona Estado</span>
             </div>
-            <select name="Estado" class="select select-primary w-full max-w-xs">
+            <select
+              onChange={handleChange}
+              name="Estado"
+              class="select select-primary w-full max-w-xs"
+            >
               <option disabled selected>
                 Estado del estudiante
               </option>
@@ -158,17 +185,15 @@ const IEstudiante = () => {
           </label>
           <label className="form-control w-full max-w-xs">
             <div className="label">
-              <span className="label-text">Selecciona Institucion</span>
+              <span className="label-text">Nombre de Institucion</span>
             </div>
-            <select class="select select-primary w-full max-w-xs">
-              <option disabled selected>
-                What is the best TV show?
-              </option>
-              <option>Game of Thrones</option>
-              <option>Lost</option>
-              <option>Breaking Bad</option>
-              <option>Walking Dead</option>
-            </select>
+            <input
+              onChange={handleChange}
+              type="text"
+              name="Colegio"
+              placeholder="Institucion"
+              className="input input-primary input-bordered w-full max-w-xs"
+            />
           </label>
 
           <label className="form-control w-full max-w-xs">
@@ -176,7 +201,9 @@ const IEstudiante = () => {
               <span className="label-text">Ingresar el Nombre</span>
             </div>
             <input
+              onChange={handleChange}
               type="text"
+              name="Nombre"
               placeholder="Nombre"
               className="input input-primary input-bordered w-full max-w-xs"
             />
@@ -186,7 +213,9 @@ const IEstudiante = () => {
               <span className="label-text">Ingresar el Apellido</span>
             </div>
             <input
+              onChange={handleChange}
               type="text"
+              name="Apellido"
               placeholder="Apellido"
               className="input input-primary input-bordered w-full max-w-xs"
             />
@@ -197,7 +226,9 @@ const IEstudiante = () => {
               <span className="label-text">Ingresar el Telefono</span>
             </div>
             <input
+              onChange={handleChange}
               type="number"
+              name="Telefono"
               placeholder="Telefono"
               className="input input-primary input-bordered w-full max-w-xs"
             />
@@ -208,7 +239,9 @@ const IEstudiante = () => {
               <span className="label-text">Ingresar la Direccion</span>
             </div>
             <input
+              onChange={handleChange}
               type="text"
+              name="Direccion"
               placeholder="Direccion"
               className="input input-primary input-bordered w-full max-w-xs"
             />
@@ -219,18 +252,10 @@ const IEstudiante = () => {
               <span className="label-text">Ingresar el Nombre Acudiente</span>
             </div>
             <input
+              onChange={handleChange}
               type="text"
+              name="NombreApeAcu"
               placeholder="Nombre Acudiente"
-              className="input input-primary input-bordered w-full max-w-xs"
-            />
-          </label>
-          <label className="form-control w-full max-w-xs">
-            <div className="label">
-              <span className="label-text">Ingresar el Apellido Acudiente</span>
-            </div>
-            <input
-              type="text"
-              placeholder="Apellido Acudiente"
               className="input input-primary input-bordered w-full max-w-xs"
             />
           </label>
@@ -240,25 +265,50 @@ const IEstudiante = () => {
               <span className="label-text">Ingresar el Telefono Acudiente</span>
             </div>
             <input
+              onChange={handleChange}
               type="number"
+              name="TelefonoAcu"
               placeholder="Telefono Acudiente"
               className="input input-primary input-bordered w-full max-w-xs"
             />
           </label>
+          <label className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text">Selecciona Emrpresa</span>
+            </div>
+            <select
+              name="Nit_institucion"
+              className="select select-primary w-full max-w-xs"
+              onChange={handleChange}
+            >
+              <option value="0">Selecciona Empresa perteneciente</option>
+              {loading ? (
+                <option>Cargando...</option>
+              ) : (
+                instituciones.map((institucion, index) => (
+                  <option key={index} value={institucion.Nit_institucion}>
+                    {institucion.Nombre_Institucion}
+                  </option>
+                ))
+              )}
+            </select>
+          </label>
 
           <div className=" mt-10 flex items-center md:w-full md:col-span-3 justify-center gap-2">
             <button
+              onClick={handleConfirm}
               type="submit"
               className="btn md:w-2/5 btn-primary btn-outline "
             >
               Confirmar
             </button>
-            <button
-              type="submit"
-              className="btn md:w-2/5   btn-error btn-outline "
+            <Link
+              to="/menu/Estudiantes"
+              type="button"
+              className="btn btn-error btn-outline"
             >
               Cancelar
-            </button>
+            </Link>
           </div>
         </div>
       </div>

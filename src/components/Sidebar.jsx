@@ -66,6 +66,15 @@ const Sidebar = ({ usuario }) => {
                     <li>
                       <Link to="Ingresos">Ingresos</Link>
                     </li>
+                    <li>
+                      <Link to="Notas">Notas</Link>
+                    </li>
+                    <li>
+                      <Link to="Simulacros">Simulacros</Link>
+                    </li>
+                    <li>
+                      <Link to="Usuarios">Usuarios</Link>
+                    </li>
                   </ul>
                 </li>
               </ul>

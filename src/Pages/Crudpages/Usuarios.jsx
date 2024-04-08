@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import React from "react";
 import { useEffect, useState } from "react";
-const Simulacros = () => {
-  const [simulacros, setsimulacros] = useState([]);
+const Usuarios = () => {
+  const [Usuarios, setUsuarios] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -12,9 +12,10 @@ const Simulacros = () => {
     const fetch = async () => {
       try {
         const response = await axios.get(
-          "http://srv435312.hstgr.cloud:4200/API/V2/Simulacros/TodosSimulacros"
+          "http://srv435312.hstgr.cloud:4200/API/V2/Usuario/Todosusuarios"
         );
-        setsimulacros(response.data.data);
+        setUsuarios(response.data.usuarios);
+        console.log(response.data)
         setLoading(false);
       } catch (error) {
         console.error("Error al recuperar los datos:", error);
@@ -23,22 +24,22 @@ const Simulacros = () => {
     fetch();
   }, []);
 
-  const Filtered = simulacros.filter(
+  const Filtered = Usuarios.filter(
     (filtrado) =>
-      filtrado.Id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      filtrado.Empresa.toString().includes(searchTerm)
+      filtrado.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      filtrado.cedula.toString().includes(searchTerm)
   );
   return (
     <div className="w-full h-full ">
       <h1 className="text-2xl font-bold uppercase text-center border-b-2">
-        simulacros
+        Usuarios
       </h1>
 
       <div className="w-full bg-base flex flex-col gap-2 items-center rounded-lg h-full p-2">
         {/*Join y boton */}
         <div className=" w-full flex md:flex-row flex-col h-1/5 md:justify-between md:px-10  justify-center items-center gap-5 rounded-lg">
           <div className=" flex items-center justify-center md:order-1 order-2 gap-2">
-            <Link to="/menu/NuevoSimulacro" className="btn btn-secondary btn-xl">
+            <Link to="/menu/NuevoGasto" className="btn btn-secondary btn-xl">
               Nueva entrada
             </Link>
           </div>
@@ -66,11 +67,12 @@ const Simulacros = () => {
             <thead className="text-accent">
               <tr>
                 <th></th>
-                <th>ID_Simulacro</th>
-                <th>Empresa</th>
-                <th>CuadernillosComprados</th>
-                <th>Fecha_Simulacro</th>
-                <th>Grado</th>
+                <th>Cedula</th>
+                <th>nombre</th>
+                <th>Apellido</th>
+                <th>Usuario</th>
+                <th>Institucion</th>
+                <th>Opciones</th>
               </tr>
             </thead>
             <tbody>
@@ -79,14 +81,14 @@ const Simulacros = () => {
                   <td colSpan="4">Cargando...</td>
                 </tr>
               ) : (
-                Filtered.map((sim, index) => (
+                Filtered.map((Usuario, index) => (
                   <tr key={index}>
                     <td>{index + 1}</td>
-                    <td className="text-black">{sim.Id}</td>
-                    <td>{sim.Empresa}</td>
-                    <td>{sim.CuadernillosComprados}</td>
-                    <td>{sim.Fecha_Simulacro}</td>
-                    <td>{sim.Grado}</td>
+                    <td className="text-black">{Usuario.Cedula}</td>
+                    <td>{Usuario.nombre}</td>
+                    <td>{Usuario.apellido}</td>
+                    <td>{Usuario.usuario}</td>
+                    <td>{Usuario.Nit_institucion}</td>
                     <td>
                       <AiFillSetting className="btn-xs btn btn-ghost w-auto h-2 mx-auto" />
                     </td>
@@ -97,11 +99,13 @@ const Simulacros = () => {
             <tfoot className="text-accent">
               <tr>
               <th></th>
-                <th>ID_Simulacro</th>
-                <th>Empresa</th>
-                <th>CuadernillosComprados</th>
-                <th>Fecha_Simulacro</th>
-                <th>Grado</th>
+                <th>Cedula</th>
+                <th>nombre</th>
+                <th>Apellido</th>
+                <th>Usuario</th>
+                <th>Contraseña</th>
+                <th>Institucion</th>
+                <th>Opciones</th>
               </tr>
             </tfoot>
           </table>
@@ -111,4 +115,4 @@ const Simulacros = () => {
   );
 };
 
-export default Simulacros;
+export default Usuarios;

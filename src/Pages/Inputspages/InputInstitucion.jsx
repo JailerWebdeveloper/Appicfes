@@ -29,7 +29,7 @@ const IInstitucion = () => {
         alert(response.status) 
       } catch (error) {
         console.error("Error al realizar la solicitud POST:", error);
-        alert("Al parecer hubo un error",error)
+        alert(error.response.data.message);
         setmessage(error.response.data.message);
       }
     }else{

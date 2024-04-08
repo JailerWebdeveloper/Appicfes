@@ -43,11 +43,10 @@ const Registerpage = () => {
         usuario: formData.usuario,
         contrasena: formData.contraseña,
         cedula: parseInt(formData.cedula), // Convertir a entero
-        Institucion: parseInt(formData.Institucion), // Convertir a entero
+        Nit_institucion: parseInt(formData.Institucion), // Convertir a entero
       };
-      console.log(formdata);
       const response = await axios.post("http://srv435312.hstgr.cloud:4200/API/V2/Usuario/Registro", formdata);
-      alert(response.message);
+      alert(response.data.message);
       window.location.href = "/";
     } catch (error) {
       console.error("Error al enviar la solicitud POST:", error);
