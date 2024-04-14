@@ -14,7 +14,7 @@ const Notas = () => {
     const fetch = async () => {
       try {
         const response = await axios.get(
-          "http://srv435312.hstgr.cloud:4200/API/V2/Notas/Todas"
+          "https://upc-codex.tech:4200/API/V2/Notas/Todas"
         );
         setNotas(response.data.data);
         setLoading(false);

@@ -18,7 +18,7 @@ const Registerpage = () => {
     const fetchInstituciones = async () => {
       try {
         const response = await axios.get(
-          "http://srv435312.hstgr.cloud:4200/API/V2/Instituciones"
+          "https://upc-codex.tech:4200/API/V2/Instituciones"
         );
         setInstituciones(response.data.data);
         setLoading(false);
@@ -45,7 +45,7 @@ const Registerpage = () => {
         cedula: parseInt(formData.cedula), // Convertir a entero
         Nit_institucion: parseInt(formData.Institucion), // Convertir a entero
       };
-      const response = await axios.post("http://srv435312.hstgr.cloud:4200/API/V2/Usuario/Registro", formdata);
+      const response = await axios.post("https://upc-codex.tech:4200/API/V2/Usuario/Registro", formdata);
       alert(response.data.message);
       window.location.href = "/";
     } catch (error) {

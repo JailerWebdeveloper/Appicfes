@@ -27,7 +27,7 @@ const Landing = () => {
     console.log(data)
     try {
       const response = await axios.post(
-        "http://srv435312.hstgr.cloud:4200/API/V2/login",
+        "https://upc-codex.tech:4200/API/V2/login",
         data
       );
 

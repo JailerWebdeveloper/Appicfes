@@ -12,7 +12,7 @@ const Simulacros = () => {
     const fetch = async () => {
       try {
         const response = await axios.get(
-          "http://srv435312.hstgr.cloud:4200/API/V2/Simulacros/TodosSimulacros"
+          "https://upc-codex.tech:4200/API/V2/Simulacros/TodosSimulacros"
         );
         setsimulacros(response.data.data);
         setLoading(false);

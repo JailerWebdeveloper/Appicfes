@@ -20,13 +20,13 @@ const IInstitucion = () => {
     if (  formdata.Nombre_Institucion && formdata.Nit_institucion) {
       try {
         const response = await axios.post(
-          "http://srv435312.hstgr.cloud:4200/API/V2/Instituciones",
+          "https://upc-codex.tech:4200/API/V2/Instituciones",
           formdata
         );
         console.log(response)
         console.log(response.data);
         setmessage("Ingresar el NIT")
-        alert(response.status) 
+        alert(response.data.message) 
       } catch (error) {
         console.error("Error al realizar la solicitud POST:", error);
         alert(error.response.data.message);

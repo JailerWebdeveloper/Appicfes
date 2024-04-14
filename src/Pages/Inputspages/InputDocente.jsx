@@ -28,7 +28,7 @@ const IDocente = () => {
     const fetchInstituciones = async () => {
       try {
         const response = await axios.get(
-          "http://srv435312.hstgr.cloud:4200/API/V2/Instituciones"
+          "https://upc-codex.tech:4200/API/V2/Instituciones"
         );
         setInstituciones(response.data.data);
         setLoading(false);
@@ -53,7 +53,7 @@ const IDocente = () => {
         };
         console.log(data)
         const response = await axios.post(
-          "http://srv435312.hstgr.cloud:4200/API/V2/Registro/Docente",
+          "https://upc-codex.tech:4200/API/V2/Registro/Docente",
           data
         );
         console.log(response);

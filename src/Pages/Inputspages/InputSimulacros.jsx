@@ -29,7 +29,7 @@ const ISimulacros = () => {
           Grado: formdata.Grado,
         };
         const response = await axios.post(
-          "http://srv435312.hstgr.cloud:4200/API/V2/Registro/Simulacro",
+          "https://upc-codex.tech:4200/API/V2/Registro/Simulacro",
           data
         );
         alert(response.data.message);

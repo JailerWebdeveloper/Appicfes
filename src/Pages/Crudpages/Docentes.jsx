@@ -13,7 +13,7 @@ const Docentes = () => {
     const fetch = async () => {
       try {
         const response = await axios.get(
-          "http://srv435312.hstgr.cloud:4200/API/V2/Docentes/Todos"
+          "https://upc-codex.tech:4200/API/V2/Docentes/Todos"
         );
         setDocentes(response.data.data);
         setLoading(false);

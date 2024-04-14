@@ -22,7 +22,7 @@ const INotas = () => {
     try {
 
       const fileResponse = await axios.post(
-        "http://srv435312.hstgr.cloud:4200/API/V2/Notas/cargar-excel",
+        "https://upc-codex.tech:4200/API/V2/Notas/cargar-excel",
         archivo,
         {
           headers: {

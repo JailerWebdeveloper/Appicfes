@@ -12,7 +12,7 @@ const Estudiantes = () => {
     const fetch = async () => {
       try {
         const response = await axios.get(
-          "http://srv435312.hstgr.cloud:4200/API/V2/Estudiantes/Todos"
+          "https://upc-codex.tech:4200/API/V2/Estudiantes/Todos"
         );
         setEstudiantes(response.data.data);
         setLoading(false);
