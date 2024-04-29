@@ -1,14 +1,13 @@
-import { AiFillSetting } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import React from "react";
 import { useEffect, useState } from "react";
-import { FaDownload } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 
 const Notas = () => {
   const [Notas, setNotas] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedSimulacro, setSelectedSimulacro] = useState(null); // Nuevo estado para almacenar el ID del simulacro seleccionado
 
   useEffect(() => {
     const fetch = async () => {
@@ -30,6 +29,29 @@ const Notas = () => {
       filtrado.Id_Simulacro.toString().includes(searchTerm) ||
       filtrado.Id_Alumno.toString().includes(searchTerm)
   );
+
+  const uniqueSimulacroIds = [
+    ...new Set(Notas.map((simulacro) => simulacro.Id_Simulacro)),
+  ];
+
+  const handleSimulacroSelect = (event) => {
+    setSelectedSimulacro(event.target.value); // Actualiza el ID del simulacro seleccionado
+  };
+
+  const handleDeleteSimulacro = async () => {
+    try {
+      await axios.delete(
+        `https://upc-codex.tech:4200/API/V2/Notas/BorrarPorSimulacro/${selectedSimulacro}`
+      );
+      // Realiza la acción de eliminación
+      alert("Simulacro eliminado exitosamente");
+      window.location.href = "/Menu/Notas";
+    } catch (error) {
+      console.error("Error al eliminar el simulacro:", error);
+      alert("No se pudo realizar la accion")
+    }
+  };
+
   return (
     <div className="w-full h-full ">
       <h1 className="text-2xl font-bold uppercase text-center border-b-2">
@@ -58,12 +80,33 @@ const Notas = () => {
 
             <div className="indicator">
               <button className="btn btn-ghost  w-auto">
-                <FaDownload className="h-2" />
-                Descargar
+                <FaSearch className="h-2" />
               </button>
             </div>
           </div>
         </div>
+        <div className="self-end mr-16 join">
+          <select onChange={handleSimulacroSelect} className="select join-item select-bordered w-full max-w-xs">
+            <option disabled selected>
+              Selecciona un simulacro a eliminar
+            </option>
+            {uniqueSimulacroIds.map((simulacroId) => (
+              <option key={simulacroId} value={simulacroId}>
+                {simulacroId}
+              </option>
+            ))}
+          </select>
+          <button
+            className={`join-item btn ${
+              selectedSimulacro ? "btn-error" : "btn-disabled"
+            }`} // Aplica la clase btn-disabled si no se ha seleccionado un simulacro
+            onClick={handleDeleteSimulacro}
+            disabled={!selectedSimulacro}
+          >
+            Eliminar
+          </button>
+        </div>
+
         {/*Tabla */}
 
         <div className="overflow-x-auto h-[450px] overflow-y-auto bg-base w-11/12 ">
@@ -89,7 +132,7 @@ const Notas = () => {
                 </tr>
               ) : (
                 Filtered.map((Nota, index) => (
-                  <tr key={index}>
+                  <tr key={index + 1}>
                     <td>{index + 1}</td>
                     <td className="text-black">{Nota.Id_Simulacro}</td>
                     <td>{Nota.Id_Alumno}</td>

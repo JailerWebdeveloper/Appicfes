@@ -45,22 +45,22 @@ const IGastos = () => {
         alert(response.data.message);
       } catch (error) {
         console.error("Error al realizar la solicitud POST:", error);
-        alert(error.response.data.message);
+        alert(error.response.data.message + " "+ error.response.data.error);
       }
     } else {
       alert("debes ingresar todos los datos");
     }
   };
   return (
-    <>
+
       <div className="w-full h-full ">
         <div className="md:w-4/5 w-full  md:px-10 md:mx-auto bg-base-400  h-full grid grid-rows-auto gap-5 grid-cols-1 md:grid-cols-3  place-items-center place-content-start rounded-lg p-2">
           <h1 className="text-primary uppercase antialised text-5xl md:col-span-3 my-10 mx-auto text-center font-bold">
             crear nuevo gasto
           </h1>
-          <label class="form-control w-full max-w-xs">
-            <div class="label">
-              <span class="label-text">Fecha de expedicion del gasto</span>
+          <label className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text">Fecha de expedicion del gasto</span>
             </div>
             <input
               name="Fecha"
@@ -77,7 +77,7 @@ const IGastos = () => {
             <select
               name="Tipo_gasto"
               onChange={handleChange}
-              class="select select-primary w-full max-w-xs"
+              className="select select-primary w-full max-w-xs"
             >
               <option disabled selected>
                 Tipo de gasto
@@ -109,7 +109,7 @@ const IGastos = () => {
             <select
               onChange={handleChange}
               name="Grado"
-              class="select select-primary w-full max-w-xs"
+              className="select select-primary w-full max-w-xs"
             >
               <option disabled selected>
                 Grado
@@ -149,7 +149,6 @@ const IGastos = () => {
           </div>
         </div>
       </div>
-    </>
   );
 };
 

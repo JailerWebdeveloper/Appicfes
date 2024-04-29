@@ -12,6 +12,7 @@ const Instituciones = () => {
     const fetchInstituciones = async () => {
       try {
         const response = await axios.get(
+
           "https://upc-codex.tech:4200/API/V2/Instituciones"
         );
         setInstituciones(response.data.data);
@@ -29,7 +30,6 @@ const Instituciones = () => {
   );
 
   return (
-    <>
       <div className="w-full h-full">
         <h1 className="text-2xl font-bold uppercase text-center border-b-2">
           Administración de Instituciones
@@ -97,7 +97,6 @@ const Instituciones = () => {
           </div>
         </div>
       </div>
-    </>
   );
 };
 

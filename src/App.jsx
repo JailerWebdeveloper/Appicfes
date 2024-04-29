@@ -20,6 +20,9 @@ import ISimulacros from "./Pages/Inputspages/InputSimulacros";
 import Usuarios from "./Pages/Crudpages/Usuarios";
 import Notas from "./Pages/Crudpages/Notas";
 import INotas from "./Pages/Inputspages/InputNotas";
+import MetricasNotas from "./Pages/Metricas/MetricasNotas";
+import MetricasDeuda from "./Pages/Metricas/MetricasDeuda";
+import MetricasGasto from "./Pages/Metricas/MetricasGasto";
 
 function App() {
   return (
@@ -39,12 +42,17 @@ function App() {
           <Route path="NuevoGasto" element={<IGastos />} />
           <Route path="Notas" element={<Notas />} />
           <Route path="NuevaNota" element={<INotas />} />
+          
           <Route path="NuevoPago" element={<IIngreso />} />
           <Route path="NuevoSimulacro" element={<ISimulacros />} />
           <Route path="NuevaInstitucion" element={<IInstitucion />} />
           <Route path="NuevoDocente" element={<IDocente/>} />
           <Route path="NuevoEstudiante" element={<IEstudiante/>} />
-          <Route path="Metricas" element={<Metricas />} />
+          <Route path="Metricas/*" element={<Metricas />} >
+          <Route path="MetricaNotas" element={<MetricasNotas/>} />
+          <Route path="MetricaDeuda" element={<MetricasDeuda/>} />
+          <Route path="MetricaGastos" element={<MetricasGasto/>} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>

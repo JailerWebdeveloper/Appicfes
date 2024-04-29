@@ -29,7 +29,7 @@ const IInstitucion = () => {
         alert(response.data.message) 
       } catch (error) {
         console.error("Error al realizar la solicitud POST:", error);
-        alert(error.response.data.message);
+        alert(error.response.data.message + " "+ error.response.data.error);
         setmessage(error.response.data.message);
       }
     }else{
@@ -38,7 +38,6 @@ const IInstitucion = () => {
   };
 
   return (
-    <>
   
       <div className="w-full h-full ">
         <h1 className="text-primary uppercase antialised text-5xl mt-10 border-b-2 text-center font-bold">
@@ -84,7 +83,6 @@ const IInstitucion = () => {
             </Link>
           </div>
         </div>
-    </>
   );
 };
 

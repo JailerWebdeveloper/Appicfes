@@ -34,20 +34,19 @@ const INotas = () => {
       alert(fileResponse.data.message)
     } catch (error) {
       console.error("Error al enviar datos:", error);
-      alert(error.response.data.message);
+      alert(error.response.data.message + " "+ error.response.data.error);
     }
   };
     return (
-      <>
         <div className="w-full h-full ">
           <div className="md:w-4/5 w-full  md:px-10 md:mx-auto bg-base-400  h-full grid grid-rows-auto gap-5 grid-cols-1   place-items-center place-content-start rounded-lg p-2">
             <h1 className="text-primary uppercase antialised text-5xl col-span-3 my-10 mx-auto text-center font-bold">
               Cargar Nuevas notas
             </h1>
-            <label class="form-control  mx-auto">
-            <div class="label">
-              <span class="label-text text-sm">Crear mediante archivo</span>
-              <span class="label-alt text-sm">Solo documentos de Excel </span>
+            <label className="form-control  mx-auto">
+            <div className="label">
+              <span className="label-text text-sm">Crear mediante archivo</span>
+              <span className="label-alt text-sm">Solo documentos de Excel </span>
             </div>
             <input
               type="file"
@@ -68,7 +67,6 @@ const INotas = () => {
             </div>
           </div>
         </div>
-      </>
     );
   };
   

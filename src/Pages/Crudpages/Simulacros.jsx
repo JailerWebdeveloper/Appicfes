@@ -1,8 +1,9 @@
 import { AiFillSetting } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import React from "react";
 import { useEffect, useState } from "react";
+
+
 const Simulacros = () => {
   const [simulacros, setsimulacros] = useState([]);
   const [loading, setLoading] = useState(true);

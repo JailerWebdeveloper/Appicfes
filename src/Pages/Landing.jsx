@@ -63,7 +63,6 @@ const Landing = () => {
     }
   };
   return (
-    <Fragment>
       <div
         className="grid grid-cols-1 lg:grid-cols-2 h-screen"
         data-theme="dark"
@@ -140,12 +139,12 @@ const Landing = () => {
         </div>
         <div className="hidden lg:flex items-center justify-center  z-10  rounded-xl">
           <img
+          alt="background"
             src="bg.jpg"
             className="w-full object-cover h-full rounded-tl-xl rounded-bl-xl"
           />
         </div>
       </div>
-    </Fragment>
   );
 };
 

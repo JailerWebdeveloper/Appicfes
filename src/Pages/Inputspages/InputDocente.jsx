@@ -8,7 +8,7 @@ const IDocente = () => {
     Nombre: "",
     Apellido: "",
     Telefono: "",
-    Materia_Dicta: "",
+    Materia_Dicta: "Español",
     Cobro: 0,
     Nit_institucion: 0,
   });
@@ -51,7 +51,6 @@ const IDocente = () => {
           Cobro: parseInt(formdata.Cobro),
           Nit_institucion: parseInt(formdata.Nit_institucion),
         };
-        console.log(data)
         const response = await axios.post(
           "https://upc-codex.tech:4200/API/V2/Registro/Docente",
           data
@@ -59,17 +58,16 @@ const IDocente = () => {
         console.log(response);
         console.log(response.data);
         alert(response.data.message);
+        window.location.href = "/Menu/Docentes";
       } catch (error) {
         console.error("Error al realizar la solicitud POST:", error);
-        alert(error.response.data.message);
-        setmessage(error.response.data.message);
+        alert(error.response.data.message + " "+ error.response.data.error);
       }
     } else {
       alert("debes ingresar todos los datos");
     }
   };
   return (
-    <>
       <div className="w-full h-full ">
         <div className="md:w-4/5 w-full  md:px-10 md:mx-auto bg-base-400  h-full grid grid-rows-auto gap-5 grid-cols-1 md:grid-cols-3  place-items-center place-content-start rounded-lg p-2">
           <h1 className="text-primary uppercase antialised text-5xl md:col-span-3 my-10 mx-auto text-center font-bold">
@@ -84,11 +82,8 @@ const IDocente = () => {
               onChange={handleChange}
               value={formdata.Materia_Dicta}
               name="Materia_Dicta"
-              class="select select-primary w-full max-w-xs"
+              className="select select-primary w-full max-w-xs"
             >
-              <option disabled selected>
-                Materia que dicta
-              </option>
               <option value="Español">Español</option>
               <option value="Inglés">Inglés</option>
               <option value="Sociales">Sociales</option>
@@ -100,7 +95,7 @@ const IDocente = () => {
           </label>
           <label className="form-control w-full max-w-xs">
             <div className="label">
-              <span className="label-text">Selecciona Emrpresa</span>
+              <span className="label-text">Selecciona Materia que dicta</span>
             </div>
             <select
               name="Nit_institucion"
@@ -112,7 +107,7 @@ const IDocente = () => {
                 <option>Cargando...</option>
               ) : (
                 instituciones.map((institucion, index) => (
-                  <option key={index} value={institucion.Nit_institucion}>
+                  <option key={index +1} value={institucion.Nit_institucion}>
                     {institucion.Nombre_Institucion}
                   </option>
                 ))
@@ -206,7 +201,6 @@ const IDocente = () => {
           </div>
         </div>
       </div>
-    </>
   );
 };
 

@@ -1,16 +1,18 @@
 import { AiFillSetting } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import React from "react";
-import { useEffect,useState } from "react";
+import { MdDeleteForever } from "react-icons/md";
+import { useEffect, useState } from "react";
 
 const Docentes = () => {
-  const [Docentes, setDocentes] = useState([]);
+  const [docentes, setDocentes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedDocenteId, setSelectedDocenteId] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false); // Nuevo estado para controlar la apertura/cierre del modal
 
   useEffect(() => {
-    const fetch = async () => {
+    const fetchDocentes = async () => {
       try {
         const response = await axios.get(
           "https://upc-codex.tech:4200/API/V2/Docentes/Todos"
@@ -21,33 +23,47 @@ const Docentes = () => {
         console.error("Error al recuperar los datos:", error);
       }
     };
-    fetch();
+    fetchDocentes();
   }, []);
 
-  const Filtered = Docentes.filter((filtrado) =>
-  filtrado.Nombre.toLowerCase().includes(searchTerm.toLowerCase())||
-  filtrado.Nit_institucion.toString().includes(searchTerm)
-);
+  const Filtered = docentes.filter(
+    (docente) =>
+      docente.Nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      docente.Nit_institucion.toString().includes(searchTerm)
+  );
 
+  const handleDeleteDocente = async () => {
+    try {
+      await axios.delete(`https://upc-codex.tech:4200/API/V2/Docente/${selectedDocenteId}`);
+      alert("Docente eliminado exitosamente");
+      setIsModalOpen(false); // Cierra el modal después de eliminar el docente
+      setSelectedDocenteId(null); // Deselecciona el ID del docente
+      location.reload();
 
+    } catch (error) {
+      alert(error.response.data.message + " "+ error.response.data.error);
+      
+      location.reload();
+    }
+  };
+console.log(docentes)
   return (
-    <div className="w-full h-full ">
+    <div className="w-full h-full">
       <h1 className="text-2xl font-bold uppercase text-center border-b-2">
-        Administracion Docentes
+        Administración de Docentes
       </h1>
 
       <div className="w-full bg-base flex flex-col gap-2 items-center rounded-lg h-full p-2">
-        {/*Join y boton */}
-        <div className=" w-full flex md:flex-row flex-col h-1/5 md:justify-between md:px-10  justify-center items-center gap-5 rounded-lg">
-          <div className=" flex items-center justify-center md:order-1 order-2 gap-2">
+        <div className="w-full flex md:flex-row flex-col h-1/5 md:justify-between md:px-10 justify-center items-center gap-5 rounded-lg">
+          <div className="flex items-center justify-center md:order-1 order-2 gap-2">
             <Link to="/menu/NuevoDocente" className="btn btn-secondary btn-xl">
               Nueva entrada
             </Link>
           </div>
-          <div className="join md:order-2  order-1">
+          <div className="join md:order-2 order-1">
             <div>
               <div>
-              <input
+                <input
                   className="input input-bordered join-item"
                   placeholder="Buscar"
                   value={searchTerm}
@@ -55,49 +71,57 @@ const Docentes = () => {
                 />
               </div>
             </div>
-           
+
             <div className="indicator">
-              <button className="btn join-item">Search</button>
+              <button className="btn join-item">Buscar</button>
             </div>
           </div>
         </div>
-        {/*Tabla */}
-
         <div className="overflow-x-auto h-[600px] overflow-y-auto bg-base w-11/12 ">
-          <table className="table table-xs border overflow-y-auto w-full  ">
+          <table className="table table-xs border overflow-y-auto w-full">
             <thead className="text-accent">
               <tr>
                 <th></th>
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Telefono</th>
-                <th>Materia_Dicta</th>
+                <th>Materia Dicta</th>
                 <th>Cobro</th>
-                <th>Institucion</th>
-                <th>Opciones</th>
+                <th>Institución</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
               </tr>
             </thead>
             <tbody>
-            {loading ? (
-                  <tr>
-                    <td colSpan="4">Cargando...</td>
+              {loading ? (
+                <tr>
+                  <td colSpan="9">Cargando...</td>
+                </tr>
+              ) : (
+                Filtered.map((docente, index) => (
+                  <tr key={index + 1}>
+                    <td>{index + 1}</td>
+                    <td className="text-black">{docente.Nombre}</td>
+                    <td>{docente.Apellido}</td>
+                    <td>{docente.Telefono}</td>
+                    <td>{docente.Materia_Dicta}</td>
+                    <td>{docente.Cobro}</td>
+                    <td>{docente.Nit_institucion}</td>
+                    <td>
+                      <AiFillSetting className="btn-xs btn btn-ghost w-auto h-2 mx-auto" />
+                    </td>
+                    <td>
+                      <MdDeleteForever
+                        className="btn-xs btn btn-ghost w-auto text-red-600 h-2 mx-auto"
+                        onClick={() => {
+                          setSelectedDocenteId(docente.Documento); // Establece el ID del docente seleccionado
+                          setIsModalOpen(true); // Abre el modal al hacer clic en el icono de eliminar
+                        }}
+                      />
+                    </td>
                   </tr>
-                ) : (
-                  Filtered.map((Docente, index) => (
-                    <tr key={index}>
-                      <td>{index + 1}</td>
-                      <td className="text-black">{Docente.Nombre}</td>
-                      <td>{Docente.Apellido}</td>
-                      <td>{Docente.Telefono}</td>
-                      <td>{Docente.Materia_Dicta}</td>
-                      <td>{Docente.Cobro}</td>
-                      <td>{Docente.Nit_institucion}</td>
-                      <td>
-                        <AiFillSetting className="btn-xs btn btn-ghost w-auto h-2 mx-auto" />
-                      </td>
-                    </tr>
-                  ))
-                )}
+                ))
+              )}
             </tbody>
             <tfoot className="text-accent">
               <tr>
@@ -105,13 +129,38 @@ const Docentes = () => {
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Telefono</th>
-                <th>Materia_Dicta</th>
+                <th>Materia Dicta</th>
                 <th>Cobro</th>
-                <th>Institucion</th>
-                <th>Opciones</th>
+                <th>Institución</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
               </tr>
             </tfoot>
           </table>
+
+          {isModalOpen && (
+            <div className="fixed inset-0 z-10 overflow-y-auto">
+              <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                <div className="fixed inset-0 transition-opacity" aria-hidden="true">
+                  <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+                </div>
+                <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                  <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <h3 className="text-lg font-bold mb-4">¡ATENCIÓN!</h3>
+                    <p className="text-gray-700 mb-6">¿Estás seguro de eliminar este docente? ({/*Aquí puedes mostrar el nombre del docente*/})</p>
+                    <div className="flex justify-end">
+                      <button className="btn mr-2" onClick={() => {
+                        setIsModalOpen(false); // Cierra el modal al cancelar
+                        setSelectedDocenteId(null); // Deselecciona el ID del docente
+                      }}>Cancelar</button>
+                      <button className="btn btn-error" onClick={handleDeleteDocente}>Eliminar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

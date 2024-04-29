@@ -40,7 +40,7 @@ const [usuariodecoded,setdecodeduser] =useState({})
       ) : (
         <>
         <h1 className="text-6xl font-bold uppercase"> SIN LOGUEAR NO PASA</h1>
-          <img src="https://e7.pngegg.com/pngimages/70/835/png-clipart-club-penguin-island-gif-disney-canada-inc-penguin-animals-club-penguin-thumbnail.png" className="w-full h-screen"></img>
+          <img alt="quitar esto" src="https://e7.pngegg.com/pngimages/70/835/png-clipart-club-penguin-island-gif-disney-canada-inc-penguin-animals-club-penguin-thumbnail.png" className="w-full h-screen"></img>
         </>
       )}
     </Fragment>

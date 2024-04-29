@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -37,7 +37,7 @@ const IIngreso = () => {
         alert(response.data.message);
       } catch (error) {
         console.error("Error al realizar la solicitud POST:", error);
-        alert(error.response.data.message);
+        alert(error.response.data.message + " "+ error.response.data.error);
       }
     } else {
       alert("debes ingresar todos los datos");
@@ -45,7 +45,6 @@ const IIngreso = () => {
   };
 
   return (
-    <>
       <div className="w-full h-full ">
         <div className="md:w-4/5 w-full  md:mx-auto bg-base-400 border-2 h-full grid grid-rows-auto gap-5 grid-cols-1 md:grid-cols-3  place-items-center place-content-center rounded-lg p-2">
           <h1 className="text-primary uppercase antialised text-5xl md:col-span-3 my-10 mx-auto text-center font-bold">
@@ -73,7 +72,7 @@ const IIngreso = () => {
             <select
               onChange={handleChange}
               name="Grado"
-              class="select select-primary w-full max-w-xs"
+              className="select select-primary w-full max-w-xs"
             >
               <option disabled selected>
                 Grado
@@ -159,7 +158,6 @@ const IIngreso = () => {
           </div>
         </div>
       </div>
-    </>
   );
 };
 

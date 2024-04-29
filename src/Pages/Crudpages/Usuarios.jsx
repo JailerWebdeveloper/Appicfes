@@ -103,7 +103,6 @@ const Usuarios = () => {
                 <th>nombre</th>
                 <th>Apellido</th>
                 <th>Usuario</th>
-                <th>Contraseña</th>
                 <th>Institucion</th>
                 <th>Opciones</th>
               </tr>
