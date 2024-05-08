@@ -1,11 +1,9 @@
 import { useState } from "react";
-import axios from "axios"; 
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 const INotas = () => {
-
   const [File, setFile] = useState(null);
-
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
@@ -20,7 +18,6 @@ const INotas = () => {
     };
 
     try {
-
       const fileResponse = await axios.post(
         "https://upc-codex.tech:4200/API/V2/Notas/cargar-excel",
         archivo,
@@ -31,44 +28,50 @@ const INotas = () => {
         }
       );
       console.log(fileResponse);
-      alert(fileResponse.data.message)
+      alert(fileResponse.data.message);
+      window.location.href = "/Menu/Notas";
     } catch (error) {
       console.error("Error al enviar datos:", error);
-      alert(error.response.data.message + " "+ error.response.data.error);
+      alert(error.response.data.message + " " + error.response.data.error);
     }
   };
-    return (
-        <div className="w-full h-full ">
-          <div className="md:w-4/5 w-full  md:px-10 md:mx-auto bg-base-400  h-full grid grid-rows-auto gap-5 grid-cols-1   place-items-center place-content-start rounded-lg p-2">
-            <h1 className="text-primary uppercase antialised text-5xl col-span-3 my-10 mx-auto text-center font-bold">
-              Cargar Nuevas notas
-            </h1>
-            <label className="form-control  mx-auto">
-            <div className="label">
-              <span className="label-text text-sm">Crear mediante archivo</span>
-              <span className="label-alt text-sm">Solo documentos de Excel </span>
-            </div>
-            <input
-              type="file"
-              onChange={handleFileUpload}
-              className=" col-span-3 file-input  file-input-bordered file-input-primary "
-            />
-          </label>
-  
-  
-  
-            <div className=" mt-10 flex items-center md:w-full md:col-span-3 justify-center gap-2">
-              <button  onClick={handleSubmit} type="submit" className="btn md:w-2/5 btn-primary btn-outline ">
-                Confirmar
-              </button>
-              <Link to="/menu/Notas" type="button" className="btn btn-error btn-outline">
-              Cancelar
-            </Link>
-            </div>
+  return (
+    <div className="w-full h-full ">
+      <div className="md:w-4/5 w-full  md:px-10 md:mx-auto bg-base-400  h-full grid grid-rows-auto gap-5 grid-cols-1   place-items-center place-content-start rounded-lg p-2">
+        <h1 className="text-primary uppercase antialised text-5xl col-span-3 my-10 mx-auto text-center font-bold">
+          Cargar Nuevas notas
+        </h1>
+        <label className="form-control  mx-auto">
+          <div className="label">
+            <span className="label-text text-sm">Crear mediante archivo</span>
+            <span className="label-alt text-sm">Solo documentos de Excel </span>
           </div>
+          <input
+            type="file"
+            onChange={handleFileUpload}
+            className=" col-span-3 file-input  file-input-bordered file-input-primary "
+          />
+        </label>
+
+        <div className=" mt-10 flex items-center md:w-full md:col-span-3 justify-center gap-2">
+          <button
+            onClick={handleSubmit}
+            type="submit"
+            className="btn md:w-2/5 btn-primary btn-outline "
+          >
+            Confirmar
+          </button>
+          <Link
+            to="/menu/Notas"
+            type="button"
+            className="btn btn-error btn-outline"
+          >
+            Cancelar
+          </Link>
         </div>
-    );
-  };
-  
-  export default INotas;
-  
+      </div>
+    </div>
+  );
+};
+
+export default INotas;

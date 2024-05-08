@@ -57,8 +57,8 @@ const Instituciones = () => {
             </div>
           </div>
 
-          <div className="overflow-x-auto h-[600px] overflow-y-auto bg-base w-11/12">
-            <table className="table table-xs border h-80 overflow-y-auto w-full">
+          <div className="overflow-x-auto h-[450px] overflow-y-auto bg-base w-11/12">
+          <table className="table table-xs border  overflow-y-auto w-full  ">
               <thead className="text-accent">
                 <tr>
                   <th></th>

@@ -1,7 +1,5 @@
-import { AiFillSetting } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import React from "react";
 import { useEffect, useState } from "react";
 const Usuarios = () => {
   const [Usuarios, setUsuarios] = useState([]);
@@ -29,6 +27,8 @@ const Usuarios = () => {
       filtrado.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
       filtrado.cedula.toString().includes(searchTerm)
   );
+
+  console.log(Usuarios)
   return (
     <div className="w-full h-full ">
       <h1 className="text-2xl font-bold uppercase text-center border-b-2">
@@ -72,7 +72,6 @@ const Usuarios = () => {
                 <th>Apellido</th>
                 <th>Usuario</th>
                 <th>Institucion</th>
-                <th>Opciones</th>
               </tr>
             </thead>
             <tbody>
@@ -82,16 +81,14 @@ const Usuarios = () => {
                 </tr>
               ) : (
                 Filtered.map((Usuario, index) => (
-                  <tr key={index}>
+                  <tr key={index + 1}>
                     <td>{index + 1}</td>
-                    <td className="text-black">{Usuario.Cedula}</td>
+                    <td className="text-black">{Usuario.cedula}</td>
                     <td>{Usuario.nombre}</td>
                     <td>{Usuario.apellido}</td>
                     <td>{Usuario.usuario}</td>
                     <td>{Usuario.Nit_institucion}</td>
-                    <td>
-                      <AiFillSetting className="btn-xs btn btn-ghost w-auto h-2 mx-auto" />
-                    </td>
+
                   </tr>
                 ))
               )}
@@ -104,7 +101,6 @@ const Usuarios = () => {
                 <th>Apellido</th>
                 <th>Usuario</th>
                 <th>Institucion</th>
-                <th>Opciones</th>
               </tr>
             </tfoot>
           </table>

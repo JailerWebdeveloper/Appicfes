@@ -9,10 +9,12 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import axios from "axios";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 const MetricasNotas = () => {
+
+
   const [simulacros, setsimulacros] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedbars, setSelectedBars] = useState("todos");

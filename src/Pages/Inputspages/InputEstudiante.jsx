@@ -68,6 +68,7 @@ const IEstudiante = () => {
           data
         );
         alert(response.data.message);
+        window.location.href = "/Menu/Estudiantes";
       } catch (error) {
         console.error("Error al realizar la solicitud POST:", error);
         alert(error.response.data.message + " "+ error.response.data.error);

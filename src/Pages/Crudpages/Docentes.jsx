@@ -11,7 +11,7 @@ const Docentes = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedDocenteId, setSelectedDocenteId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editmodalopen, seteditmodalopen] = useState(false); // Nuevo estado para controlar la apertura/cierre del modal
+  const [editmodalopen, seteditmodalopen] = useState(false);
   const [formdata, setFormdata] = useState({
     Documento: 0,
     Nombre: "",
@@ -433,7 +433,6 @@ const Docentes = () => {
             </div>
           )}
 
-          {/* Open the modal using document.getElementById('ID').showModal() method */}
         </div>
       </div>
     </div>

@@ -35,6 +35,7 @@ const IIngreso = () => {
           data
         );
         alert(response.data.message);
+        window.location.href = "/Menu/Ingresos";
       } catch (error) {
         console.error("Error al realizar la solicitud POST:", error);
         alert(error.response.data.message + " "+ error.response.data.error);

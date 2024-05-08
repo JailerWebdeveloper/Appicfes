@@ -1,8 +1,6 @@
-import { AiFillSetting } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import React from "react";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 
 const Estudiantes = () => {
   const [Estudiantes, setEstudiantes] = useState([]);
@@ -23,11 +21,12 @@ const Estudiantes = () => {
     fetch();
   }, []);
 
-
-  const Filtered = Estudiantes.filter((filtrado) =>
-  filtrado.Nombre.toLowerCase().includes(searchTerm.toLowerCase())||
-  filtrado.Nit_institucion.toString().includes(searchTerm)
-);
+  console.log(Estudiantes);
+  const Filtered = Estudiantes.filter(
+    (filtrado) =>
+      filtrado.Nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      filtrado.Nit_institucion.toString().includes(searchTerm)
+  );
 
   return (
     <div className="w-full h-full ">
@@ -49,7 +48,7 @@ const Estudiantes = () => {
           <div className="join md:order-2  order-1">
             <div>
               <div>
-              <input
+                <input
                   className="input input-bordered join-item"
                   placeholder="Buscar"
                   value={searchTerm}
@@ -57,7 +56,7 @@ const Estudiantes = () => {
                 />
               </div>
             </div>
-   
+
             <div className="indicator">
               <button className="btn join-item">Search</button>
             </div>
@@ -80,36 +79,34 @@ const Estudiantes = () => {
                 <th>TelefonoAcu</th>
                 <th>Estado</th>
                 <th>Nit_institucion</th>
+                <th>N.Documento</th>
                 <th>Grado</th>
-                <th>Opciones</th>
               </tr>
             </thead>
             <tbody>
-            {loading ? (
-                  <tr>
-                    <td colSpan="4">Cargando...</td>
+              {loading ? (
+                <tr>
+                  <td colSpan="4">Cargando...</td>
+                </tr>
+              ) : (
+                Filtered.map((Estudiante, index) => (
+                  <tr key={index + 1}>
+                    <td>{index + 1}</td>
+                    <td className="text-black">{Estudiante.Nombre}</td>
+                    <td>{Estudiante.Apellido}</td>
+                    <td>{Estudiante.Telefono}</td>
+                    <td>{Estudiante.Direccion}</td>
+                    <td>{Estudiante.Municipio}</td>
+                    <td>{Estudiante.Colegio}</td>
+                    <td>{Estudiante.NombreApeAcu}</td>
+                    <td>{Estudiante.TelefonoAcu}</td>
+                    <td>{Estudiante.Estado}</td>
+                    <td>{Estudiante.Nit_institucion}</td>
+                    <td>{Estudiante.Documento}</td>
+                    <td>{Estudiante.Grado}</td>
                   </tr>
-                ) : (
-                  Filtered.map((Estudiante, index) => (
-                    <tr key={index}>
-                      <td>{index + 1}</td>
-                      <td className="text-black">{Estudiante.Nombre}</td>
-                      <td>{Estudiante.Apellido}</td>
-                      <td>{Estudiante.Telefono}</td>
-                      <td>{Estudiante.Direccion}</td>
-                      <td>{Estudiante.Municipio}</td>
-                      <td>{Estudiante.Colegio}</td>
-                      <td>{Estudiante.NombreApeAcu}</td>
-                      <td>{Estudiante.TelefonoAcu}</td>
-                      <td>{Estudiante.Estado}</td>
-                      <td>{Estudiante.Nit_institucion}</td>
-                      <td>{Estudiante.Grado}</td>
-                      <td>
-                        <AiFillSetting className="btn-xs btn btn-ghost w-auto h-2 mx-auto" />
-                      </td>
-                    </tr>
-                  ))
-                )}
+                ))
+              )}
             </tbody>
             <tfoot className="text-accent">
               <tr>
@@ -123,8 +120,11 @@ const Estudiantes = () => {
                 <th>NombreAcu</th>
                 <th>TelefonoAcu</th>
                 <th>Estado</th>
+                <th>Nit_institucion</th>
+
+                <th>N.Documento</th>
+
                 <th>Grado</th>
-                <th>Opciones</th>
               </tr>
             </tfoot>
           </table>

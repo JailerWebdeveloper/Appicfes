@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, Link, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Landing from "./Pages/Landing";
 import Dashboard from "./Pages/Dashboard";
@@ -23,7 +23,6 @@ import INotas from "./Pages/Inputspages/InputNotas";
 import MetricasNotas from "./Pages/Metricas/MetricasNotas";
 import MetricasDeuda from "./Pages/Metricas/MetricasDeuda";
 import MetricasGasto from "./Pages/Metricas/MetricasGasto";
-
 function App() {
   return (
     <BrowserRouter>
@@ -42,14 +41,13 @@ function App() {
           <Route path="NuevoGasto" element={<IGastos />} />
           <Route path="Notas" element={<Notas />} />
           <Route path="NuevaNota" element={<INotas />} />
-          
           <Route path="NuevoPago" element={<IIngreso />} />
           <Route path="NuevoSimulacro" element={<ISimulacros />} />
           <Route path="NuevaInstitucion" element={<IInstitucion />} />
           <Route path="NuevoDocente" element={<IDocente/>} />
           <Route path="NuevoEstudiante" element={<IEstudiante/>} />
           <Route path="Metricas/*" element={<Metricas />} >
-          <Route path="MetricaNotas" element={<MetricasNotas/>} />
+          <Route path="" element={<MetricasNotas/>} />
           <Route path="MetricaDeuda" element={<MetricasDeuda/>} />
           <Route path="MetricaGastos" element={<MetricasGasto/>} />
           </Route>

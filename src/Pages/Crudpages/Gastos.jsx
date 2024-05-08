@@ -1,7 +1,6 @@
 import { AiFillSetting } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import React from "react";
 import { useEffect, useState } from "react";
 const Gastos = () => {
   const [Gastos, setGastos] = useState([]);
@@ -90,7 +89,7 @@ const Gastos = () => {
                 </tr>
               ) : (
                 Filtered.map((Gasto, index) => (
-                  <tr key={index}>
+                  <tr key={index + 1}>
                     <td>{index + 1}</td>
                     <td className="text-black">{Gasto.Id_gasto}</td>
                     <td>{Gasto.Descripcion}</td>

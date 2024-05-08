@@ -15,9 +15,10 @@ const IGastos = () => {
     Tipo_gasto: "",
     Gasto: 0,
     Descripcion: "",
-    Id_Usuario:infoUsuario.Id_Usuario,
+    Id_Usuario:infoUsuario.cedula,
     Grado: "",
   });
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,7 +36,7 @@ const IGastos = () => {
           Tipo_gasto: formdata.Tipo_gasto,
           Gasto: parseInt(formdata.Gasto),
           Descripcion: formdata.Descripcion,
-          Id_Usuario: parseInt(formdata.Id_Usuario),
+          Id_Usuario: infoUsuario.cedula,
           Grado: formdata.Grado,
         };
         const response = await axios.post(
@@ -43,6 +44,7 @@ const IGastos = () => {
           data
         );
         alert(response.data.message);
+        window.location.href = "/Menu/Gastos";
       } catch (error) {
         console.error("Error al realizar la solicitud POST:", error);
         alert(error.response.data.message + " "+ error.response.data.error);

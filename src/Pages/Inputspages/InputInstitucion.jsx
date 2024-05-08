@@ -27,6 +27,7 @@ const IInstitucion = () => {
         console.log(response.data);
         setmessage("Ingresar el NIT")
         alert(response.data.message) 
+        window.location.href = "/Menu/Instituciones";
       } catch (error) {
         console.error("Error al realizar la solicitud POST:", error);
         alert(error.response.data.message + " "+ error.response.data.error);
