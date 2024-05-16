@@ -45,14 +45,15 @@ const Registerpage = () => {
         apellido: formData.apellido,
         usuario: formData.usuario,
         contrasena: formData.contraseña,
-        cedula: parseInt(formData.cedula), // Convertir a entero
-        Nit_institucion: parseInt(formData.Institucion), // Convertir a entero
+        cedula: parseInt(formData.cedula),
+        Nit_institucion: parseInt(formData.Institucion),
+        Rol: "Inactivo",
       };
       const response = await axios.post(
         "https://upc-codex.tech:4200/API/V2/Usuario/Registro",
         formdata
       );
-      setshowalert({ tipo: "error", mensaje:response.data.message });
+      setshowalert({ tipo: "error", mensaje: response.data.message });
       setTimeout(() => {
         setshowalert({ tipo: "", mensaje: "" });
       }, 3000);
@@ -69,7 +70,10 @@ const Registerpage = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 h-screen" data-theme="dark">
       {showalert.tipo == "error" ? (
-        <div role="alert" className="alert shadow-lg absolute top-10 left-10 z-40 w-64  animate-bounce transition-all alert-error">
+        <div
+          role="alert"
+          className="alert shadow-lg absolute top-10 left-10 z-40 w-64  animate-bounce transition-all alert-error"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

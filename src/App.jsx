@@ -23,12 +23,14 @@ import INotas from "./Pages/Inputspages/InputNotas";
 import MetricasNotas from "./Pages/Metricas/MetricasNotas";
 import MetricasDeuda from "./Pages/Metricas/MetricasDeuda";
 import MetricasGasto from "./Pages/Metricas/MetricasGasto";
+import ErrorPage from "./Pages/404";
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/Registro" element={<Registerpage />} />
+        <Route path="*" element={<ErrorPage/>} />
+        <Route path="Register" element={<Registerpage/>} />
         <Route path="/Menu/*" element={<Dashboard />}>
         <Route path="" element={<MenuDefault />} />
           <Route path="Gastos" element={<Gastos />} />
