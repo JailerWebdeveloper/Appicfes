@@ -23,6 +23,7 @@ import INotas from "./Pages/Inputspages/InputNotas";
 import MetricasNotas from "./Pages/Metricas/MetricasNotas";
 import MetricasDeuda from "./Pages/Metricas/MetricasDeuda";
 import MetricasGasto from "./Pages/Metricas/MetricasGasto";
+import Cuestionario from "./Pages/Cuestionario"
 import ErrorPage from "./Pages/404";
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
           <Route path="NuevaInstitucion" element={<IInstitucion />} />
           <Route path="NuevoDocente" element={<IDocente/>} />
           <Route path="NuevoEstudiante" element={<IEstudiante/>} />
+          <Route path="Cuestionario" element={<Cuestionario/>} />
           <Route path="Metricas/*" element={<Metricas />} >
           <Route path="" element={<MetricasNotas/>} />
           <Route path="MetricaDeuda" element={<MetricasDeuda/>} />
