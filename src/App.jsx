@@ -25,15 +25,17 @@ import MetricasDeuda from "./Pages/Metricas/MetricasDeuda";
 import MetricasGasto from "./Pages/Metricas/MetricasGasto";
 import Cuestionario from "./Pages/Cuestionario"
 import ErrorPage from "./Pages/404";
+import CrearPreguntas from "./Pages/ModuloPracticas/Pages/crearPreguntas";
+import CrearPracticas from "./Pages/ModuloPracticas/Pages/crearPractica";
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="*" element={<ErrorPage/>} />
-        <Route path="Register" element={<Registerpage/>} />
+        <Route path="*" element={<ErrorPage />} />
+        <Route path="Register" element={<Registerpage />} />
         <Route path="/Menu/*" element={<Dashboard />}>
-        <Route path="" element={<MenuDefault />} />
+          <Route path="" element={<MenuDefault />} />
           <Route path="Gastos" element={<Gastos />} />
           <Route path="Instituciones" element={<Instituciones />} />
           <Route path="Simulacros" element={<Simulacros />} />
@@ -47,14 +49,16 @@ function App() {
           <Route path="NuevoPago" element={<IIngreso />} />
           <Route path="NuevoSimulacro" element={<ISimulacros />} />
           <Route path="NuevaInstitucion" element={<IInstitucion />} />
-          <Route path="NuevoDocente" element={<IDocente/>} />
-          <Route path="NuevoEstudiante" element={<IEstudiante/>} />
-          <Route path="Cuestionario" element={<Cuestionario/>} />
+          <Route path="NuevoDocente" element={<IDocente />} />
+          <Route path="NuevoEstudiante" element={<IEstudiante />} />
+          <Route path="Cuestionario" element={<Cuestionario />} />
           <Route path="Metricas/*" element={<Metricas />} >
-          <Route path="" element={<MetricasNotas/>} />
-          <Route path="MetricaDeuda" element={<MetricasDeuda/>} />
-          <Route path="MetricaGastos" element={<MetricasGasto/>} />
+            <Route path="" element={<MetricasNotas />} />
+            <Route path="MetricaDeuda" element={<MetricasDeuda />} />
+            <Route path="MetricaGastos" element={<MetricasGasto />} />
           </Route>
+          <Route path="CrearPreguntas" element={<CrearPreguntas />} />
+          <Route path="CrearPractica" element={<CrearPracticas />} />
         </Route>
       </Routes>
     </BrowserRouter>

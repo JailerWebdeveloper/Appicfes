@@ -1,6 +1,7 @@
 import { AiTwotoneHome, AiFillSetting } from "react-icons/ai";
 import { FaChartBar } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { GrTest } from "react-icons/gr";
 
 const Sidebar = ({ usuario }) => {
   return (
@@ -64,6 +65,36 @@ const Sidebar = ({ usuario }) => {
                   <li>
                     <Link to="Usuarios">Usuarios</Link>
                   </li>
+                </ul>
+              </li>
+            </ul>
+          </details>
+
+          <details
+            className={`flex md:flex-row w-full p-2  flex-col items-center gap-4   md:rounded-lg hover:bg-accent transition-all ${
+              usuario?.Rol != "SuperAdmin" ? "hidden" : ""
+            } `}
+          >
+            <summary className="flex items-center gap-2">
+              <GrTest />
+              Pruebas
+            </summary>
+            <ul className="menu">
+              <li>
+                <ul>
+                  <li>
+                    <Link to="CrearPreguntas">Generar Preguntas</Link>
+                  </li>
+                  <li>
+                    <Link to="Instituciones">Banco de Preguntas</Link>
+                  </li>
+                  <li>
+                    <Link to="CrearPractica">Crear Formulario</Link>
+                  </li>
+                  <li>
+                    <Link to="Gastos">Banco de Formularios</Link>
+                  </li>
+                  
                 </ul>
               </li>
             </ul>
