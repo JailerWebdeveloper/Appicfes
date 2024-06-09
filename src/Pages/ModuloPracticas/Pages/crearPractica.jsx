@@ -79,8 +79,7 @@ const CrearPracticas = () => {
       });
 
       const IdPractica = practicaResponse.data.Practica.Id;
-      console.log(practicaResponse)
-      console.log(IdPractica)
+
       const questionsResponse = await axios.post(
         "https://upc-codex.tech:4258/API/V2/ContentPractice/Register",
         { IdPractica, Preguntas: selectedIds }

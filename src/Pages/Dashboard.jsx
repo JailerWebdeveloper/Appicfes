@@ -25,7 +25,6 @@ const Dashboard = () => {
 
     checkUserAuthentication();
   }, []);
-  console.log(usuariodecoded);
   return (
     <Fragment>
       {userAuthenticated ? (

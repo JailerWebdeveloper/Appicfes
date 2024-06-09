@@ -61,7 +61,6 @@ const MetricasDeuda = () => {
     setTotalGastos({value:totalGastosSum});
   }, [Gastos]);
 
-  console.log(totalPagos);
   return (
     <div className="flex flex-col w-full items-center gap-10 h-full ">
       {loading ? (

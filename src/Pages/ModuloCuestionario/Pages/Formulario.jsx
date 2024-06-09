@@ -2,21 +2,45 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Cuestionario from '../Components/Cuestionario';
 import ResultadoModal from '../Components/ResultadoModal';
-
-const Formulario = ({  }) => {
+import { useParams } from 'react-router-dom';
+import Cookies from "js-cookie";
+import {jwtDecode} from "jwt-decode";
+const Formulario = () => {
+  const [userAuthenticated, setUserAuthenticated] = useState(false);
+  const [usuariodecoded, setdecodeduser] = useState({});
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [result, setResult] = useState(null);
-  const practiceId = 14;
+  const { id } = useParams();
+
+  
+  useEffect(() => {
+    const checkUserAuthentication = async () => {
+        const accessToken = Cookies.get("accessToken");
+        if (accessToken) {
+            try {
+                const decoded = jwtDecode(accessToken);
+                setdecodeduser(decoded);
+                setUserAuthenticated(true);
+            } catch (error) {
+                console.error("Error al decodificar el token:", error);
+                Cookies.remove("accessToken");
+            }
+        }
+    };
+
+    checkUserAuthentication();
+}, []);
+
+
 
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await axios.get(`https://upc-codex.tech:4258/API/V2/ContentPractice/GetByPracticeId/${practiceId}`);
+        const response = await axios.get(`https://upc-codex.tech:4258/API/V2/ContentPractice/GetByPracticeId/${id}`);
         setQuestions(response.data.ContentPractice[0].Preguntas);
-        console.log(response);
         setSelectedOptions(Array(response.data.ContentPractice[0].Preguntas.length).fill(''));
       } catch (error) {
         console.error('Error fetching questions:', error);
@@ -24,7 +48,7 @@ const Formulario = ({  }) => {
     };
 
     fetchQuestions();
-  }, [practiceId]);
+  }, [id]);
 
   const handlePrevious = () => {
     setCurrentQuestionIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : prevIndex));
@@ -41,7 +65,6 @@ const Formulario = ({  }) => {
   };
 
   const handleSubmit = async () => {
-    // Validar que todas las preguntas estén respondidas
     const unansweredIndex = selectedOptions.findIndex(option => option === '');
     if (unansweredIndex !== -1) {
       alert(`La pregunta ${unansweredIndex + 1} no ha sido respondida.`);
@@ -49,14 +72,13 @@ const Formulario = ({  }) => {
     }
 
     const responsePayload = {
-      IdPractica: practiceId,
-      CedulaAlumno: 1001234747,  // Reemplaza esto con el valor adecuado
+      IdPractica: id,
+      CedulaAlumno: usuariodecoded.Documento,  // Reemplaza esto con el valor adecuado
       Respuestas: selectedOptions,
     };
 
     try {
       const response = await axios.post('https://upc-codex.tech:4258/API/V2/ContentPractice/Evaluate', responsePayload);
-      console.log('Response:', response.data);
       setResult(response.data);
       setIsModalOpen(true);
     } catch (error) {
@@ -75,7 +97,7 @@ const Formulario = ({  }) => {
             selectedOption={selectedOptions[currentQuestionIndex]}
             handleOptionChange={handleOptionChange}
           />
-          <div className="flex justify-center my-8">
+          <div className="flex justify-center gap-1 my-8">
             {questions.map((_, index) => (
               <button 
                 key={index}

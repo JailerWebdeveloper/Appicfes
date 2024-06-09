@@ -31,23 +31,14 @@ const Navbar = ({ usuario }) => {
             <li>
               <Link
                 className="flex md:flex-row w-full p-2 transition-all flex-col items-center gap-4  md:rounded-lg hover:bg-accent"
-                href="/"
+                to="/Menu/Perfil"
               >
                 <GoPersonFill className="w-auto h-6 " />
 
                 <p className="text-sm font-medium break-all">Perfil</p>
               </Link>
             </li>
-            <li>
-              <Link
-                className="flex md:flex-row w-full p-2 transition-all flex-col items-center gap-4  md:rounded-lg hover:bg-accent"
-                href="/"
-              >
-                <AiFillSetting className="w-auto h-6  text-blue-500" />
 
-                <p className="text-sm font-medium break-all">Ajustes</p>
-              </Link>
-            </li>
             <li>
               <a
                 className="flex md:flex-row w-full p-2 transition-all flex-col items-center gap-4  md:rounded-lg hover:bg-accent"

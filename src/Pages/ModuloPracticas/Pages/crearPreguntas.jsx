@@ -65,7 +65,6 @@ const CrearPreguntas = () => {
             },
           }
         );
-        console.log(response);
         alert("Pregunta creada con éxito");
         setFormdata({
           Question: "",
@@ -120,7 +119,6 @@ const CrearPreguntas = () => {
               <input
                 type="file"
                 name="Photo"
-                value={formdata.Photo}
                 className="file-upload-input"
                 onChange={handleFileChange}
                 accept="image/*"

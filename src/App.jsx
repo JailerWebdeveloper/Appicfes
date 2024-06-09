@@ -30,6 +30,8 @@ import CrearPracticas from "./Pages/ModuloPracticas/Pages/crearPractica";
 import BancoPreguntas from "./Pages/ModuloPracticas/Pages/bancoPreguntas";
 import BancoPracticas from "./Pages/ModuloPracticas/Pages/bancoPracticas";
 import Formulario from "./Pages/ModuloCuestionario/Pages/Formulario";
+import PerfilEstudiante from "./Pages/ModuloEstudiante/perfilEstudiante";
+import PruebasDisponibles from "./Pages/ModuloEstudiante/pruebasDisponibles";
 function App() {
   return (
     <BrowserRouter>
@@ -64,7 +66,9 @@ function App() {
           <Route path="CrearPractica" element={<CrearPracticas />} />
           <Route path="BancoPreguntas" element={<BancoPreguntas />} />
           <Route path="BancoPracticas" element={<BancoPracticas />} />
-          <Route path="PreguntaI" element={<Formulario />} />
+          <Route path="pruebas" element={<PruebasDisponibles />} />
+          <Route path="formulario/:id" element={<Formulario />} />
+          <Route path="Perfil" element={<PerfilEstudiante />} />
         </Route>
       </Routes>
     </BrowserRouter>

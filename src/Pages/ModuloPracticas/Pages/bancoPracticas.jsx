@@ -24,7 +24,6 @@ const BancoPracticas = () => {
     fetchPractices();
   }, []);
 
-  console.log(practices)
   const handlePracticeSelect = (event) => {
     setSelectedPractice(event.target.value);
   };
@@ -65,6 +64,7 @@ const BancoPracticas = () => {
           <thead className="text-accent">
             <tr>
               <th></th>
+              <th>Nombre Practica</th>
               <th>ID de practica</th>
               <th>#Preguntas</th>
               <th></th>
@@ -79,6 +79,7 @@ const BancoPracticas = () => {
               practices.map((practice, index) => (
                 <tr key={practice.id}>
                   <td>{index + 1}</td>
+                  <td className="text-black pl-5">{practice.Nombre}</td>
                   <td className="text-black pl-5">{practice.IdPractica}</td>
                   <td className="text-black pl-10">{practice.Preguntas.length}</td>
                   <td>
@@ -99,6 +100,7 @@ const BancoPracticas = () => {
           <tfoot className="text-accent">
             <tr>
               <th></th>
+              <th>Nombre Practica</th>
               <th>ID de practica</th>
               <th>#Preguntas</th>
               <th></th>
