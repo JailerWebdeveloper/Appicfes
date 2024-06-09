@@ -31,7 +31,7 @@ const IIngreso = () => {
           Grado: formdata.Grado,
         };
         const response = await axios.post(
-          "https://upc-codex.tech:4200/API/V2/Registro/Cartera",
+          "https://upc-codex.tech:4258/API/V2/Registro/Cartera",
           data
         );
         alert(response.data.message);

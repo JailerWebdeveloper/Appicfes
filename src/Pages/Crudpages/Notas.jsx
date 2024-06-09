@@ -13,7 +13,7 @@ const Notas = () => {
     const fetch = async () => {
       try {
         const response = await axios.get(
-          "https://upc-codex.tech:4200/API/V2/Notas/Todas"
+          "https://upc-codex.tech:4258/API/V2/Notas/Todas"
         );
         setNotas(response.data.data);
         setLoading(false);
@@ -41,7 +41,7 @@ const Notas = () => {
   const handleDeleteSimulacro = async () => {
     try {
       await axios.delete(
-        `https://upc-codex.tech:4200/API/V2/Notas/BorrarPorSimulacro/${selectedSimulacro}`
+        `https://upc-codex.tech:4258/API/V2/Notas/BorrarPorSimulacro/${selectedSimulacro}`
       );
       // Realiza la acción de eliminación
       alert("Simulacro eliminado exitosamente");

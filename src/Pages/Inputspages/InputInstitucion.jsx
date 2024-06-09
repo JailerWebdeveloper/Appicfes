@@ -20,7 +20,7 @@ const IInstitucion = () => {
     if (  formdata.Nombre_Institucion && formdata.Nit_institucion) {
       try {
         const response = await axios.post(
-          "https://upc-codex.tech:4200/API/V2/Instituciones",
+          "https://upc-codex.tech:4258/API/V2/Instituciones",
           formdata
         );
         console.log(response)

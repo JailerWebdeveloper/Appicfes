@@ -11,7 +11,7 @@ const Gastos = () => {
     const fetch = async () => {
       try {
         const response = await axios.get(
-          "https://upc-codex.tech:4200/API/V2/Gastos/Todos"
+          "https://upc-codex.tech:4258/API/V2/Gastos/Todos"
         );
         setGastos(response.data.data);
         setLoading(false);

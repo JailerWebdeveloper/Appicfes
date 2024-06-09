@@ -86,13 +86,42 @@ const Sidebar = ({ usuario }) => {
                     <Link to="CrearPreguntas">Generar Preguntas</Link>
                   </li>
                   <li>
-                    <Link to="Instituciones">Banco de Preguntas</Link>
+                    <Link to="BancoPreguntas">Banco de Preguntas</Link>
                   </li>
                   <li>
                     <Link to="CrearPractica">Crear Formulario</Link>
                   </li>
                   <li>
-                    <Link to="Gastos">Banco de Formularios</Link>
+                    <Link to="BancoPracticas">Banco de Formularios</Link>
+                  </li>
+                  
+                </ul>
+              </li>
+            </ul>
+          </details>
+          <details
+            className={`flex md:flex-row w-full p-2  flex-col items-center gap-4   md:rounded-lg hover:bg-accent transition-all ${
+              usuario?.Rol != "SuperAdmin" ? "" : ""
+            } `}
+          >
+            <summary className="flex items-center gap-2">
+              <GrTest />
+              Test de alumno
+            </summary>
+            <ul className="menu">
+              <li>
+                <ul>
+                  <li>
+                    <Link to="PreguntaI">Pregunta individual</Link>
+                  </li>
+                  <li>
+                    <Link to="BancoPreguntas">Banco de Preguntas</Link>
+                  </li>
+                  <li>
+                    <Link to="CrearPractica">Crear Formulario</Link>
+                  </li>
+                  <li>
+                    <Link to="BancoPracticas">Banco de Formularios</Link>
                   </li>
                   
                 </ul>

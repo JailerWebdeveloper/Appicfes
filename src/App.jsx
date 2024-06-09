@@ -23,10 +23,13 @@ import INotas from "./Pages/Inputspages/InputNotas";
 import MetricasNotas from "./Pages/Metricas/MetricasNotas";
 import MetricasDeuda from "./Pages/Metricas/MetricasDeuda";
 import MetricasGasto from "./Pages/Metricas/MetricasGasto";
-import Cuestionario from "./Pages/Cuestionario"
+import Cuestionario from "./Pages/ModuloCuestionario/Components/Cuestionario"
 import ErrorPage from "./Pages/404";
 import CrearPreguntas from "./Pages/ModuloPracticas/Pages/crearPreguntas";
 import CrearPracticas from "./Pages/ModuloPracticas/Pages/crearPractica";
+import BancoPreguntas from "./Pages/ModuloPracticas/Pages/bancoPreguntas";
+import BancoPracticas from "./Pages/ModuloPracticas/Pages/bancoPracticas";
+import Formulario from "./Pages/ModuloCuestionario/Pages/Formulario";
 function App() {
   return (
     <BrowserRouter>
@@ -59,6 +62,9 @@ function App() {
           </Route>
           <Route path="CrearPreguntas" element={<CrearPreguntas />} />
           <Route path="CrearPractica" element={<CrearPracticas />} />
+          <Route path="BancoPreguntas" element={<BancoPreguntas />} />
+          <Route path="BancoPracticas" element={<BancoPracticas />} />
+          <Route path="PreguntaI" element={<Formulario />} />
         </Route>
       </Routes>
     </BrowserRouter>

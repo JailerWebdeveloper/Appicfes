@@ -24,16 +24,13 @@ const Landing = () => {
       contrasena: formData.contrasena,
     };
 
-    console.log(data);
     try {
       const response = await axios.post(
         LoginLikeDocente
-          ? "https://upc-codex.tech:4200/API/V2/login"
-          : 'https://upc-codex.tech:4200/API/V2/Student/login',
+          ? "https://upc-codex.tech:4258/API/V2/login"
+          : 'https://upc-codex.tech:4258/API/V2/Student/login',
         data
       );
-      console.log(response)
-      console.log(data)
       if (response.status === 200) {
         const token = response.data.token;
         // Almacenar el token en las cookies de manera segura

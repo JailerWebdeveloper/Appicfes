@@ -43,7 +43,7 @@ const Docentes = () => {
           Nit_institucion: parseInt(formdata.Nit_institucion),
         };
         const response = await axios.put(
-          `https://upc-codex.tech:4200/API/V2/Docente/${formdata.Documento}`,
+          `https://upc-codex.tech:4258/API/V2/Docente/${formdata.Documento}`,
           data
         );
         console.log(response);
@@ -70,13 +70,13 @@ const Docentes = () => {
       Cobro: 0,
       Nit_institucion: 0,
     });
-  };
+  }; 
 
   useEffect(() => {
     const fetchInstituciones = async () => {
       try {
         const response = await axios.get(
-          "https://upc-codex.tech:4200/API/V2/Instituciones"
+          "https://upc-codex.tech:4258/API/V2/Instituciones"
         );
         setInstituciones(response.data.data);
         setLoading(false);
@@ -91,7 +91,7 @@ const Docentes = () => {
     const fetchDocentes = async () => {
       try {
         const response = await axios.get(
-          "https://upc-codex.tech:4200/API/V2/Docentes/Todos"
+          "https://upc-codex.tech:4258/API/V2/Docentes/Todos"
         );
         setDocentes(response.data.data);
         setLoading(false);
@@ -111,7 +111,7 @@ const Docentes = () => {
   const handleDeleteDocente = async () => {
     try {
       await axios.delete(
-        `https://upc-codex.tech:4200/API/V2/Docente/${selectedDocenteId}`
+        `https://upc-codex.tech:4258/API/V2/Docente/${selectedDocenteId}`
       );
       alert("Docente eliminado exitosamente");
       setIsModalOpen(false); // Cierra el modal después de eliminar el docente

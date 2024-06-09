@@ -10,7 +10,7 @@ const Usuarios = () => {
     const fetch = async () => {
       try {
         const response = await axios.get(
-          "https://upc-codex.tech:4200/API/V2/Usuario/Todosusuarios"
+          "https://upc-codex.tech:4258/API/V2/Usuario/Todosusuarios"
         );
         setUsuarios(response.data.usuarios);
         console.log(response.data)

@@ -47,7 +47,7 @@ const Simulacros = () => {
         };
         console.log(data);
         const response = await axios.put(
-          `https://upc-codex.tech:4200/API/V2/Simulacro/${formdata.Id}`,
+          `https://upc-codex.tech:4258/API/V2/Simulacro/${formdata.Id}`,
           data
         );
         alert(response.data.message);
@@ -64,7 +64,7 @@ const Simulacros = () => {
     const fetch = async () => {
       try {
         const response = await axios.get(
-          "https://upc-codex.tech:4200/API/V2/Simulacros/TodosSimulacros"
+          "https://upc-codex.tech:4258/API/V2/Simulacros/TodosSimulacros"
         );
         setsimulacros(response.data.data);
         setLoading(false);

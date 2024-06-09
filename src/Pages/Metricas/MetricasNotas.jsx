@@ -23,7 +23,7 @@ const MetricasNotas = () => {
     const fetch = async () => {
       try {
         const response = await axios.get(
-          "https://upc-codex.tech:4200/API/V2/Notas/simulacro"
+          "https://upc-codex.tech:4258/API/V2/Notas/simulacro"
         );
         setsimulacros(response.data.data);
         setLoading(false);

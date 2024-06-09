@@ -19,7 +19,7 @@ const INotas = () => {
 
     try {
       const fileResponse = await axios.post(
-        "https://upc-codex.tech:4200/API/V2/Notas/cargar-excel",
+        "https://upc-codex.tech:4258/API/V2/Notas/cargar-excel",
         archivo,
         {
           headers: {

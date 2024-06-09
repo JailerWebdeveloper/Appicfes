@@ -1,5 +1,6 @@
+import axios from "axios";
 import "../css/index.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { BiSolidImageAdd } from "react-icons/bi";
 
 const CrearPreguntas = () => {
@@ -10,12 +11,9 @@ const CrearPreguntas = () => {
     OptionB: "",
     OptionC: "",
     OptionD: "",
-    Photo: "",
+    Photo: null, // Cambiado para manejar el archivo de foto
     Subject: "",
   });
-
-  const [instituciones, setInstituciones] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,10 +24,10 @@ const CrearPreguntas = () => {
   };
 
   const handleFileChange = (e) => {
-    const { name, files } = e.target;
+    const { files } = e.target;
     setFormdata((prevState) => ({
       ...prevState,
-      [name]: files[0],
+      Photo: files[0], // Solo el primer archivo
     }));
   };
 
@@ -40,10 +38,54 @@ const CrearPreguntas = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aquí puedes manejar el envío del formulario
-    console.log(formdata);
+
+    try {
+      if (formdata.Subject !== "" && formdata.Answer !== "") {
+        const data = new FormData();
+        data.append("Question", formdata.Question);
+        data.append("Answer", formdata.Answer);
+        data.append("OptionA", formdata.OptionA);
+        data.append("OptionB", formdata.OptionB);
+        data.append("OptionC", formdata.OptionC);
+        data.append("OptionD", formdata.OptionD);
+        data.append("Subject", formdata.Subject);
+
+        if (formdata.Photo) {
+          data.append("Photo", formdata.Photo);
+        }
+
+        const response = await axios.post(
+          "https://upc-codex.tech:4258/API/V2/Question/Register",
+          data,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        console.log(response);
+        alert("Pregunta creada con éxito");
+        setFormdata({
+          Question: "",
+          Answer: "",
+          OptionA: "",
+          OptionB: "",
+          OptionC: "",
+          OptionD: "",
+          Photo: null, // Cambiado para manejar el archivo de foto
+          Subject: "",
+        })
+      } else {
+        alert("Debe seleccionar una respuesta y una materia");
+      }
+    } catch (error) {
+      console.error("Error al realizar la solicitud POST:", error);
+      alert(
+        error.response.data.message + " " + error.response.data.error
+      );
+    }
   };
 
   return (
@@ -55,6 +97,7 @@ const CrearPreguntas = () => {
             type="text"
             name="Question"
             placeholder="Pregunta"
+            value={formdata.Question}
             className="input input-primary text-black bg-slate-50 input-bordered w-full max-w-lg"
             required
           />
@@ -77,6 +120,7 @@ const CrearPreguntas = () => {
               <input
                 type="file"
                 name="Photo"
+                value={formdata.Photo}
                 className="file-upload-input"
                 onChange={handleFileChange}
                 accept="image/*"
@@ -100,6 +144,7 @@ const CrearPreguntas = () => {
                 name="OptionA"
                 onChange={handleChange}
                 type="text"
+                value={formdata.OptionA}
                 className="form__field"
                 placeholder="Opción A"
                 required
@@ -123,6 +168,7 @@ const CrearPreguntas = () => {
                 name="OptionB"
                 onChange={handleChange}
                 type="text"
+                value={formdata.OptionB}
                 className="form__field"
                 placeholder="Opción B"
                 required
@@ -146,6 +192,7 @@ const CrearPreguntas = () => {
                 name="OptionC"
                 onChange={handleChange}
                 type="text"
+                value={formdata.OptionC}
                 className="form__field"
                 placeholder="Opción C"
                 required
@@ -169,6 +216,7 @@ const CrearPreguntas = () => {
                 name="OptionD"
                 onChange={handleChange}
                 type="text"
+                value={formdata.OptionD}
                 className="form__field"
                 placeholder="Opción D"
                 required

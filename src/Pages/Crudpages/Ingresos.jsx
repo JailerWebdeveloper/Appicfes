@@ -11,7 +11,7 @@ const Ingresos = () => {
     const fetch = async () => {
       try {
         const response = await axios.get(
-          "https://upc-codex.tech:4200/API/V2/Pagos/Todos"
+          "https://upc-codex.tech:4258/API/V2/Pagos/Todos"
         );
         setPagos(response.data.data);
         setLoading(false);

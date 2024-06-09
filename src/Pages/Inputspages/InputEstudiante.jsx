@@ -36,7 +36,7 @@ const IEstudiante = () => {
     const fetchInstituciones = async () => {
       try {
         const response = await axios.get(
-          "https://upc-codex.tech:4200/API/V2/Instituciones"
+          "https://upc-codex.tech:4258/API/V2/Instituciones"
         );
         setInstituciones(response.data.data);
         setLoading(false);
@@ -68,7 +68,7 @@ const IEstudiante = () => {
           Contrasena:formdata.Contrasena,
         };
         const response = await axios.post(
-          "https://upc-codex.tech:4200/API/V2/Registro/Estudiante",
+          "https://upc-codex.tech:4258/API/V2/Registro/Estudiante",
           data
         );
         alert(response.data.message);
