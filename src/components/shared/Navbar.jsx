@@ -9,7 +9,7 @@ const Navbar = ({ usuario }) => {
   return (
     <div className="navbar px-10 bg-white">
       <div className="flex-1">
-        <Link className="btn btn-ghost text-xl flex items-center"><img src="./Logoit.png" alt="Logo" className="w-5 h-5"/>IcfesTracer</Link>
+        <Link className="btn btn-ghost text-xl flex items-center"><img src="/Logoit.png" alt="Logo" className="w-5 h-5"/>IcfesTracer</Link>
       </div>
       <div className="flex gap-2">
         <p className="font-semibold text-gray-600 capitalize">{usuario.nombre+" "+usuario.apellido}</p>
